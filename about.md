@@ -4,5 +4,12 @@ title: About
 permalink: /about/
 ---
 
-This is website is an experiment and will ideally begin to serve as somewhat
-of a notebook. Most of the content has not yet been added (e.g., my picture, a research statement, and links to publications).
+![Jack Poulson]({{ site.url }}{{ site.baseurl }}/assets/Jack.png)
+
+Jack Poulson is an [Assistant Professor in the Department of Mathematics at 
+Stanford University](http://mathematics.stanford.edu/people/name/jack/).
+His research interests tend to focus on distributed-memory algorithms and 
+software for modern numerical algorithms, with focuses on 
+[direct linear algebra and optimization](http://libelemental.org) and schemes 
+for applying hierarchical low-rank techniques as broadly as possible 
+(e.g., structured matrices and [butterfly algorithms](http://github.com/poulson/dist-butterfly)).

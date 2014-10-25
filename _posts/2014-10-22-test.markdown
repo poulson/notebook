@@ -1,14 +1,14 @@
 ---
 layout: post
 title: Motivation for the site
-date: 2014-10-24 12:00:00
+date: 2014-10-22 12:00:00
 categories: test
 ---
 
 I have started this site for a number of reasons:
 
-1. I have recently moved for Georgia Tech to Stanford
-2. I would like to keep a public journal of my academic activities
+1. I have recently moved from Georgia Tech to Stanford
+2. I would like to keep a public journal of some of my academic activities
 
 I have chosen this format since it is static HTML, so I can easily maintain
 the website with a simple text editor on my laptop and publish it anywhere.
