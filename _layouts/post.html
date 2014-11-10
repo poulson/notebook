@@ -16,7 +16,7 @@ layout: default
       [Last edited: {{ page.edit }}]<br />
       {% endif %}
       {% if page.author.twitter %} 
-      (Share this post: <a id="twttr" class="bst" href="https://twitter.com/share?text={{ page.title }}%20via%20@{{ page.author.twitter }}&url={{ site.url }}{{ page.url }}">
+      (Share this post: <a id="twttr" class="bst" href="https://twitter.com/share?text={{ page.title }}%20via%20@{{ page.author.twitter }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}">
         <img src="{{ site.baseurl }}/assets/twitter-small.png"/>
       </a>)
       {% endif %}
