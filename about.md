@@ -14,3 +14,5 @@ software for modern numerical algorithms, with concentrations on
 [direct linear algebra and optimization](http://libelemental.org) and algebra
 on/with structured matrices
 (e.g., $$ \mathcal{H} $$-matrices and [butterfly algorithms](http://github.com/poulson/dist-butterfly)).
+
+You may find a recent copy of his CV [here]({{ site.baseurl }}/docs/poulson-cv.pdf).

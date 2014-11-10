@@ -1,0 +1,406 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+% Comment the following lines to use the default Computer Modern font
+% instead of the Palatino font provided by the mathpazo package.
+% Remove the 'osf' bit if you don't like the old style figures.
+\usepackage[T1]{fontenc}
+\usepackage[sc,osf]{mathpazo}
+
+\def\name{Jack Poulson}
+
+% Replace this with a link to your CV if you like, or set it empty
+% (as in \def\footerlink{}) to remove the link in the footer:
+\def\footerlink{}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {linear algebra, parallel computing, mathematics},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.25in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+  }
+}{
+  \end{list}
+}
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+\vspace{0.25in}
+
+\begin{minipage}{0.45\linewidth}
+  Department of Mathematics \\
+  450 Serra Mall, Building 380 \\
+  Stanford University \\
+  Stanford, CA 94305-2125
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+  \begin{tabular}{ll}
+    Phone:&(650)723-1968 \\
+    Email:&\href{mailto:poulson@stanford.edu}{\tt poulson@stanford.edu} \\
+    Homepage: & \href{http://www.stanford.edu/~poulson}{\tt http://www.stanford.edu/\textasciitilde poulson} \\
+  \end{tabular}
+\end{minipage}
+
+\section*{Academic History}
+
+\begin{tabular}{lll}
+01/2015-        & {\bf Assistant Professor of Mathematics}              & Stanford University \\
+10/2014-01/2015 & {\bf Acting Assistant Professor of Mathematics}       & Stanford University \\
+11/2013-09/2014 & {\bf Assistant Professor of Comput.\ Science \& Eng.} & Georgia Institute of Technology \\
+01/2013-11/2013 & {\bf Postdoctoral Scholar of Mathematics}             & Stanford University \\
+12/2012         & {\bf PhD in Computational and Applied Mathematics}    & University of Texas at Austin \\
+08/2011         & {\bf MS in Computational and Applied Mathematics}     & University of Texas at Austin \\
+05/2009         & {\bf MS in Aerospace Engineering}                     & University of Texas at Austin \\
+05/2007         & {\bf BS in Aerospace Engineering}                     & University of Texas at Austin \\
+\end{tabular}
+
+\section*{Industry and Laboratory Experience}
+
+\begin{tabular}{lll}
+06/2012-08/2012 & {\bf Research Intern} & WesternGeco                 \\
+07/2010-08/2010 & {\bf Research Aide}   & Argonne National Laboratory \\
+06/2009-08/2009 & {\bf Research Intern} & Microsoft Research          \\
+\end{tabular}
+
+\section*{Academic Artifacts}
+
+\subsection*{Parallel Mathematical Software}
+
+\begin{itemize}
+\item {\bf Elemental}, Primary Author, 2009-\\
+A high-performance framework for distributed-memory dense and sparse-direct linear algebra.\\ 
+{\it Actively maintained and supported}\\
+Available at 
+\href{http://libelemental.org}{\tt 
+      http://libelemental.org} under the New BSD License.
+
+\item {\bf Real-Time Low-rank Plus Sparse MRI}, Primary Author, 2013-\\
+Distributed L+S decomposition for accelerated dynamic MRI.\\ 
+{\it New implementation}\\
+Available at
+\href{http://github.com/poulson/rt-lps-mri}{\tt
+      http://github.com/poulson/rt-lps-mri} under the New BSD License.
+
+\item {\bf DistButterfly}, Primary Author, 2010-\\
+Distributed butterfly algorithms for non-uniform oscillatory transforms.\\
+{\it Actively supported}\\
+Available at
+\href{http://github.com/poulson/dist-butterfly}{\tt
+      http://github.com/poulson/dist-butterfly} under GPLv3.
+
+\item {\bf Parallel Sweeping Preconditioner (PSP)}, Primary Author, 2011-\\
+A prototype sweeping preconditioner for large 3d Helmholtz problems with  PML.\\
+{\it Actively supported}\\
+Available at
+\href{http://github.com/poulson/PSP}{\tt
+      http://github.com/poulson/PSP} under GPLv3.
+
+\item {\bf Distributed-Memory Hierarchical Matrices (DMHM)}, Primary Author, 2011-\\
+A prototype of distributed-memory $\mathcal{H}$-matrix arithmetic. \\
+{\it Proof of concept}\\
+Available at
+\href{http://bitbucket.org/poulson/dmhm}{\tt
+      http://bitbucket.org/poulson/dmhm} under GPLv3.
+
+%\item {\bf Elemental Krylov Spectral (EKS)}, Primary Author, Summer 2012 \\
+%An implementation of the Krylov-spectral method geared towards large numbers of 
+%eigenpairs. \\
+%{\it Property of WesternGeco}
+
+\end{itemize}
+
+\subsection*{Peer-reviewed Journal Articles}
+
+\begin{itemize}
+
+\item Austin R. Benson, Jack Poulson, Kenneth Tran, Bj\"orn Engquist, and Lexing Ying.
+A parallel directional Fast Multipole Method. {\it SIAM Journal on Scientific Computing},
+36(4), C335--C352, 2014
+
+\item Jack Poulson, Laurent Demanet, Nicholas Maxwell, and Lexing Ying.
+A parallel butterfly algorithm, {\it SIAM Journal on Scientific Computing},
+36(1), C49--C65, 2014
+
+\item Paul Tsuji, Jack Poulson, Bj\"orn Engquist, and Lexing Ying.
+Sweeping preconditioners for elastic wave propagation with spectral element
+methods, {\it ESAIM: Mathematical Modeling and Numerical Analysis},
+48(2), 433--447, 2014
+
+\item Jack Poulson, Bj\"orn Engquist, Siwei Li, and Lexing Ying.
+A parallel sweeping preconditioner for heterogeneous 3D Helmholtz equations, 
+{\it SIAM Journal on Scientific Computing}, 35(3), C194-C212, 2013
+
+\item Jack Poulson, Bryan Marker, Robert van de Geijn, Jeff R.\ Hammond, and 
+Nichols Romero. Elemental: a new framework for distributed memory dense matrix 
+computations, {\it ACM Transactions on Mathematical Software}, 39(2), 
+13:1--13:24, 2013
+
+\item Laurent Demanet, Matthew Ferrara, Nicholas Maxwell, Jack Poulson, and 
+Lexing Ying. A butterfly algorithm for synthetic aperture radar imaging,
+{\it SIAM Journal on Imaging Sciences}, 5(1):203--243, 2012
+
+\item Bryan Marker, Ernie Chan, Jack Poulson, Robert van de Geijn, 
+Rob F.\ Van der Wijngaart, Timothy G.\ Mattson, and Theodore E.\ Kubaska.
+Programming many-core architectures - a case study: dense matrix computations on the Intel SCC processor, {\it Concurrency and Computation: Practice and 
+Experience}, 24(12):1317--1333, 2012
+
+\end{itemize}
+
+\subsection*{Submitted Journal Articles}
+
+\begin{itemize}
+
+\item Martin D. Schatz, Robert A. van de Geijn, and Jack Poulson.
+Parallel matrix multiplication: A systematic journey, {\it SIAM Journal on Scientific Computing}
+
+%\item Jack Poulson and Robert van de Geijn.
+%(Parallel) algorithms for two-sided triangular solves and matrix multiplication,
+%{\it In limbo}
+
+%\item Martin D. Schatz, Jack Poulson, and Robert A. van de Geijn. 
+%Scalable Universal Matrix Multiplication Algorithms: 2D and 3D Variations on a 
+%Theme, {\it In limbo}
+
+\end{itemize}
+
+%\subsection*{In Preparation}
+%
+%\begin{itemize}
+%
+%\item Jack Poulson and Lexing Ying.
+%High-performance parallel sparse-direct triangular solves.
+%
+%\item Jack Poulson, Yingzhou Li, and Lexing Ying.
+%Parallel $\mathcal{H}$-matrix algebra, Part I: Matrix-vector multiplication.
+%
+%\item Jack Poulson, Yingzhou Li, and Lexing Ying.
+%Parallel $\mathcal{H}$-matrix algebra, Part II: Matrix-matrix operations.
+%
+%\end{itemize}
+
+\subsection*{Conference Papers}
+
+\begin{itemize}
+
+\item Jack Poulson, Bj\"orn Engquist, Siwei Li, and Lexing Ying.
+      A parallel sweeping preconditioner for frequency-domain seismic 
+      wave propagation, {\it SEG 2012}
+
+\item Bryan Marker, Jack Poulson, Don Batory, and Robert van de Geijn. 
+      Designing linear algebra algorithms by transformation: mechanizing the 
+      dense linear algebra expert, {\it iWAPT 2012}
+
+\end{itemize}
+
+%\subsection*{Dissertation}
+%
+%\begin{itemize}
+%\item Fast parallel solution of heterogeneous 3D time-harmonic wave equations.
+%      December 2012.
+%\end{itemize}
+
+\subsection*{Dissertation}
+\begin{itemize}
+\item Jack Poulson. Fast parallel solution of heterogeneous 3D time-harmonic wave equations. 
+      Institute for Computational Engineering and Sciences, UT Austin. December 2012
+\end{itemize}
+
+\subsection*{Technical Reports}
+
+\begin{itemize}
+
+\item Martin Schatz, Jack Poulson, and Robert van de Geijn. 
+      Parallel matrix multiplication: 2D and 3D, FLAME Working Note \#62. 
+      The University of Texas at Austin, Department of Computer Science, 
+      TR-12-13. June 2012
+
+\item Bryan Marker, Andy Terrel, Jack Poulson, Don Batory, and 
+      Robert van de Geijn. Mechanizing the dense linear algebra developer, 
+      FLAME Working Note \#58. 
+      The University of Texas at Austin, Department of Computer Science, 
+      TR-11-18. April 2011
+
+\item Jack Poulson, Robert van de Geijn, and Jeffrey Bennighof. 
+      Parallel algorithms for reducing the generalized Hermitian-definite 
+      eigenvalue problem, FLAME Working Note \#56.
+      The University of Texas at Austin, Department of Computer Science,
+      TR-11-05. February 2011
+
+\item Jack Poulson, Bryan Marker, Jeff R. Hammond, Nichols A. Romero, and 
+      Robert van de Geijn. Elemental: a new framework for distributed memory 
+      dense matrix computations, FLAME Working Note \#44.
+      The University of Texas at Austin, Department of Computer Science,
+      TR-10-20. January 2011
+
+\end{itemize}
+
+%\subsection*{In Preparation}
+%
+%\begin{itemize}
+%
+%\item Jack Poulson, Lexing Ying, Nicholas Maxwell, and Laurent Demanet.
+%A parallel butterfly algorithm for Fourier Integral Operators.
+%
+%\item Jack Poulson and Lexing Ying.
+%Communication-optimal $\mathcal{H}$-matrix multiplication.
+%
+%\end{itemize}
+
+%\subsection*{Master's Thesis}
+%
+%\begin{itemize}
+%\item Formalized parallel dense linear algebra and its application to the 
+%generalized eigenvalue problem. 2009, {\it The University of Texas at Austin}.
+%Supervised by Jeffrey Bennighof.
+%\end{itemize}
+
+\section*{Invited Talks}
+
+\begin{tabular}{rlll}
+11/2014 & Applied Math Seminar            & Stanford University           & Stanford, CA \\
+10/2014 & AMCS Seminar                    & KAUST                         & Thuwal, KSA \\
+10/2014 & ICL Seminar                     & University of Tennessee       & Knoxville, TN \\
+10/2014 & Scientific \& Stat.\ Seminar    & University of Chicago         & Chicago, IL \\
+09/2014 & BLIS Retreat                    & University of Texas at Austin & Austin, TX \\
+09/2014 & SIAM-CCE Seminar                & MIT                           & Cambridge, MA \\
+09/2014 & Applied Math Seminar            & MIT                           & Cambridge, MA \\
+07/2014 & Annual Meeting                  & SIAM                          & Chicago, IL \\
+07/2014 & Parallel Matrix Alg.\ and Appl. & USI                           & Lugano, Switzerland \\
+01/2014 & Math+X Seminar                  & Stanford                      & Stanford, CA \\
+12/2013 & Fall Meeting                    & AGU                           & San Francisco, CA \\
+11/2013 & CSE Seminar                     & Georgia Institute of Tech.\   & Atlanta, GA \\
+10/2013 & ICME LA/Opt Seminar             & Stanford                      & Stanford, CA \\
+08/2013 & SEP Seminar                     & Stanford                      & Stanford, CA \\
+06/2013 & ICS                             & ACM/SIGARCH                   & Eugene, OR \\
+03/2013 & TCCS                            & University of Texas at Austin & Houston, TX \\
+01/2013 & CSE Seminar                     & Georgia Institute of Tech.\   &  Atlanta, GA \\
+12/2012 & Seminar                         & LBNL                          &  Berkeley, CA \\
+11/2012 & TCCS                            & University of Texas at Austin & Austin, TX \\
+11/2012 & Annual Meeting                  & SEG                           & Las Vegas, NV \\
+06/2012 & Domain Decomposition 21         & Springer                      & Rennes, France \\
+06/2012 & Applied Linear Algebra          & SIAM                          & Valencia, Spain \\
+05/2012 & IAMCS                           & KAUST                         & Thuwal, KSA \\
+04/2012 & SHAXc                           & KAUST                         & Thuwal, KSA \\
+03/2012 & TCCS                            & University of Texas at Austin & Houston, TX \\
+02/2012 & Parallel Processing             & SIAM                          & Savannah, GA \\
+01/2012 & ICERM-TW12                      & Brown University              & Providence, RI \\
+10/2011 & TCCS                            & University of Texas at Austin & Austin, TX \\
+03/2011 & TCCS                            & University of Texas at Austin & Houston, TX \\
+02/2011 & Comput.\ Sci.\ \& Eng.\         & SIAM                          & Reno, NV \\
+02/2010 & Parallel Processing             & SIAM                          & Seattle, WA \\
+\end{tabular}
+
+\section*{Teaching}
+\begin{tabular}{lll}
+Spring 2015 & Math in the Real World                      & Stanford University \\
+Winter 2015 & Advanced Topics in Numerical Linear Algebra & Stanford University \\
+Spring 2014 & Fast Linear Algebra                         & Georgia Institute of Tech.\ \\
+Spring 2013 & Introduction to MPI (short course)          & Stanford University \\
+\end{tabular}
+
+%\section*{Mentoring}
+%\begin{itemize}
+%\item Austin Benson, Stanford University, PhD\ student in Computational and Mathematical Engineering
+%\item Yingzhou Li, Stanford University, PhD\ student in Computational and Mathematical Engineering
+%\end{itemize}
+
+\section*{Academic Service}
+%\subsection*{Journals}
+
+\subsection*{Editing and Review}
+\begin{itemize}
+\item Reviewer, ACM Transactions on Mathematical Software
+\item Reviewer, Computing
+\item Reviewer, IEEE Antennas and Wireless Propagation Letters
+\item Reviewer, IEEE Transactions on Signal Processing
+\item Reviewer, International Journal of High Performance Computing
+\item Reviewer, Journal of Parallel and Distributed Computing
+\item Reviewer, SIAM Journal on Computing
+\item Reviewer, SIAM Journal on Scientific Computing
+\item External Reviewer, Communications in Mathematical Sciences
+\item External Reviewer, SIAM Journal on Numerical Analysis
+\item Guest Editor, ACM XRDS, 2012
+\end{itemize}
+
+\subsection*{Program Committees and Review Panels}
+\begin{itemize}
+\item PC member, IPDPS 2015
+\item PC member, XSEDE14
+\item PC member, PGAS14
+\item Member, NSF Review Panel, 2014
+\item PC member, IMUDI 2012-2013
+\end{itemize}
+
+\subsection*{Departmental}
+\begin{itemize}
+\item Area Coordinator, Georgia Tech CSE/CS-CSE MS program, 2014
+\item Member, Admissions Committee for Georgia Tech CSE/CS-CSE PhD program, 2014
+\item Member, PhD committee for Xiaolin Wang (Georgia Tech,Math)
+\item Member, PhD committee for Christopher Turnes (Georgia Tech,ECE)
+\end{itemize}
+
+%\section*{Professional Societies}
+%\begin{itemize}
+%\item Member, Association for Computing Machinery (ACM)
+%\item Member, American Geophysical Union (AGU)
+%\item Member, Society for Industrial and Applied Mathematics (SIAM)
+%\end{itemize}
+
+\section*{Funding and Awards}
+\begin{itemize}
+\item 2014 - DARPA XDATA, AFRL Contract FA8750-13-C-0002
+\item 2013 - NSF SSI-SI2 Supplement, Co-PI, ACI-$1148125$
+\item 2013 - UT Austin Outstanding Dissertation Award
+\item 2009 - Computational and Applied Mathematics Fellowship
+\end{itemize}
+
+%\section*{Employability}
+%\begin{itemize}
+%\item United States Citizen.
+%\end{itemize}
+
+\bigskip
+
+% Footer
+\begin{center}
+  \begin{footnotesize}
+    Last updated: \today \\
+    \href{\footerlink}{\texttt{\footerlink}}
+  \end{footnotesize}
+\end{center}
+
+\end{document}
