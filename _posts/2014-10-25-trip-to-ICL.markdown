@@ -2,7 +2,7 @@
 layout: post
 title: Trip to Innovative Computing Laboratory
 date: 2014-10-25 13:40:00
-edit: 2014-11-04 12:08:00
+edit: 2014-11-09 10:00:00
 location: UT (Knoxville, TN)
 categories: talks
 ---
@@ -29,3 +29,7 @@ and was surprised to see both how large the group is and how many active
 research projects there are.
 I hope to hear more about their recent work on decentralized schedulers for 
 distributed-memory linear algebra soon.
+
+*Availability*: The software used to produce the distributed-memory 
+pseudospectral images and timings is called [Elemental and is available on 
+GitHub](https://github.com/elemental/Elemental).

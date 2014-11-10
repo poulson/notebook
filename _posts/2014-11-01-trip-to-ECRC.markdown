@@ -2,7 +2,7 @@
 layout: post
 title: Trip to Extreme Computing Research Center
 date: 2014-11-01 13:40:00
-edit: 2014-11-04 11:27:00
+edit: 2014-11-09 09:58:00
 location: KAUST (Thuwal, Saudi Arabia)
 categories: talks
 ---
@@ -33,3 +33,11 @@ convert the HSS inverse into a standard admissiblity $$ \mathcal{H} $$-matrix
 (with lower rank), and then to run a highly parallel Newton-Schulz procedure
 to achieve a higher-quality inverse with a modest rank. Results were presented
 for the distributed-memory $$ \mathcal{H} $$-matrix composition portion.
+
+*Availability*: The source code for the prototype used to produce the 
+distributed-memory $$ \mathcal{H} $$-matrix composition results in the talk
+is called [Distributed-Memory Hierarchical Matrices and is available on 
+BitBucket](https://bitbucket.org/poulson/dmhm).
+
+*Edit*: There are subtle errors in the overview of Bebendorf and Hackbusch's 
+existence theorem. Please see the corrected version described [in this update]({{ site.baseurl }}/talks/2014/11/05/stanford-applied-math.html).
