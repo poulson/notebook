@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="CME 335: Advanced Topics in Numerical Linear Algebra" />
+    <meta name="author" content="Jack Poulson" />
+    <link rel="stylesheet" type="text/css" href="basic-profile.css" title="Basic Profile" media="all" />
+    <title>CME 335: Advanced Topics in Numerical Linear Algebra</title>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div id="sidebar">
+        <a href="index.html"><img src="images/saddle-point.png" height="220" alt="saddle-point" /></a>
+	<ul>
+	  <li><a href="#Info">Information</a></li>
+          <li><a href="#Schedule">Schedule</a></li>
+          <li><a href="#Handouts">Handouts</a></li>
+          <li><a href="#Homework">Homework</a></li>
+          <li><a href="#Projects">Projects</a></li>
+	  <li><a href="#Resources">Resources</a></li>
+	</ul>
+      </div>
+
+      <div id="content">
+        <h1>Advanced Topics in Numerical Linear Algebra</h1>
+	<i>
+        This is meant to be a second course in numerical linear algebra, and its
+        purpose is to fill in many of the important gaps typically left in
+        introductory courses, such as accurate symmetric factorizations, 
+        partially-reorthogonalized Lanczos, the practical details of dense and 
+        condensed-form eigenvalue algorithms, how to efficiently compute 
+        pseudospectra, and algorithms for quickly updating matrix 
+        factorizations.
+        </i>
+
+	<h3><a name="Info">Class Information</a></h3>
+        CME 335: Advanced Topics in Numerical Linear Algebra <br />
+	Instructor: <a href="http://www.stanford.edu/~poulson">Jack Poulson</a> (poulson AT stanford DOT edu) <br />
+        Prerequisite: Numerical Linear Algebra <br />
+        Times: M/W/F, 12:20-1:10pm <br />
+        Location: <br />
+        <ul>
+          <li>M/W: Building 380, Room 380-D (Basement)</li>
+          <li>F: Outside of ICME in the basement of Huang (bring laptop if possible)</li>
+        </ul>
+
+        <h4>Office hours</h4>
+        Mondays at 3PM (or by appointment) in 384Y<br />
+        <br />
+
+        <h4>Rough course outline</h4>
+        <ul>
+          <li>Accurate (dense and sparse) symmetric factorizations</li>
+          <li>Subspace methods</li>
+          <li>High-performance eigensolvers</li>
+          <li>Updating matrix factorizations</li>
+        </ul>
+
+        <h3><a name="Schedule">Schedule</a></h3>
+
+        <h4>Meeting 1 (Monday, January 5 in 380D)</h4>
+        <ul>
+          <li>Logistics</li>
+          <li>Overview of the trajectories within the course</li>
+          <li>Voting on how detailed to make each topic</li>
+        </ul>
+
+        <h4>Meeting 2 (Wednesday, January 7 in 380D)</h4>
+        <ul>
+          <li>Motivation for sequence of lectures on 
+              symmetric factorizations</li>
+          <ul>
+            <li>Interior Point Methods and BP, LASSO/BPDN, SVM, etc.
+          </ul>
+          <li>Deadline for project selection (January 16) announced</li>
+          <li>Began discussing pivoted LU factorizations</li>
+          <li><a href="http://nbviewer.ipython.org/github/poulson/ATiNLA/blob/master/LUPiv.ipynb">IJulia notebook for pivoted LU</a></li>
+          <li>Describe the commutation of a pivot with a Gauss transofrm</li>
+        </ul>
+
+        <h4>Meeting 3 (Friday, January 9 outside of ICME)</h4>
+        <ul>
+          <li>Unblocked and blocked algorithms for Cholesky</li>
+          <li><a href="http://nbviewer.ipython.org/github/poulson/ATiNLA/blob/master/Cholesky.ipynb">IJulia notebook for Cholesky</a></li>
+        </ul>
+
+        <h4>Meeting 4 (Monday, January 12 in 380D)</h4>
+        <ul>
+          <li><a href="Ardavan.pptx">Ardavan Pedram lectured on efficient matrix composition</a></li>
+          <li><a href="http://www.eecs.berkeley.edu/~yelick/cs267_sp07/lectures/lecture03/lecture03_matmultune_ky07.pdf">Single Processor Optimizations: Matrix Multiplication Case Study</a></li>
+          <li><a href="http://www.cs.utexas.edu/users/flame/Notes/NotesOnCholReal.pdf">Notes on Cholesky factorization</a></li>
+        </ul>
+
+        <h4>Meeting 5 (Wednesday, January 14 in 380D)</h4>
+        <ul>
+          <li>Jack is in DC (Class is cancelled)</li>
+        </ul>
+
+        <h4>Meeting 6 (Friday, January 16 outside of ICME)</h4>
+        <ul>
+          <li>Project proposals due</li> 
+          <li>Began working on a blocked pivoted LU factorization</li>
+          <li><a href="https://github.com/poulson/ATiNLA">GitHub repo for discussed code created</a></li>
+        </ul>
+
+        <h4>Meeting 7 (Wednesday, January 21 in 380D)</h4>
+        <ul>
+          <li>Analogy between LU with partial/rook/full) pivoting and 
+              Bunch-Kaufman/"bounded" Bunch-Kaufman/Bunch-Parlett 
+              (though "bounded" Bunch-Kaufman was not yet covered)</li>
+          <li>See Chapter 11 of <a href="http://epubs.siam.org/doi/book/10.1137/1.9780898718027">Accuracy and Stability of Numerical Algorithms</a></li>
+          <li>See <a href="http://epubs.siam.org/doi/pdf/10.1137/100801548">The growth-factor bound for the Bunch-Kaufman factorization is tight</a> for an equivalent of Wilkinson's element-growth matrix which applies to Bunch-Kaufman (we discussed Bunch-Kaufman "A" in class)</li>
+        </ul>
+
+        <h4>Meeting 8 (Friday, January 23 outside of ICME)</h4>
+        <ul>
+          <li>We will write and test unblocked Bunch-Parlett and Bunch-Kaufman algorithms, which will be refined and posted in the <a href="http://github.com/poulson/ATiNLA">GitHub repo</a> as notebooks</li>
+          <li><a href="http://nbviewer.ipython.org/github/poulson/ATiNLA/blob/master/LDL.ipynb">IJulia notebook for symmetric factorizations</a></li>
+        </ul>
+
+        <h3><a name="Handouts">Handouts</a></h3>
+
+        <h3><a name="Homework">Homework</a></h3>
+
+        <h3><a name="Projects">Projects</a></h3>
+        To be discussed within the near future. There will be both a midterm
+        and final report.
+
+	<h3><a name="Resources">Resources</a></h3>
+      </div>
+    </div>
+  </body>
+</html>

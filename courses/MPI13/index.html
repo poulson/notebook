@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="CME 194: Introduction to MPI" />
+    <meta name="keywords" content="Message Passing Interface,MPI,parallel,distributed" />
+    <meta name="author" content="Jack Poulson" />
+    <link rel="stylesheet" type="text/css" href="basic-profile.css" title="Basic Profile" media="all" />
+    <title>CME 194: Introduction to MPI</title>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div id="sidebar">
+        <a href="index.html"><img src="images/BGP.jpg" height="220" alt="Blue Gene/P" /></a>
+	<ul>
+	  <li><a href="#Info">Information</a></li>
+          <li><a href="#DevEnv">Dev Environment</a></li>
+          <li><a href="#Schedule">Schedule</a></li>
+          <li><a href="#Handouts">Handouts</a></li>
+          <li><a href="#Homework">Homework</a></li>
+	  <li><a href="#Resources">Resources</a></li>
+          <li><a href="#Libraries">Libraries</a></li>
+	</ul>
+      </div>
+
+      <div id="content">
+        <h1>Introduction to MPI</h1>
+	<i>
+This short course is meant to provide an accelerated introduction to 
+distributed-memory computing via the Message Passing Interface (MPI).
+The course will focus on basic communication patterns, such as 
+point-to-point and collective communication, and will apply them to 
+a variety of fundamental operations for scientific computing, such 
+as dense and sparse matrix-vector multiplication, QR factorization, 
+FFT, and sorting. Basic cost models which incorporate both computation 
+and communication will be emphasized.
+	</i>
+
+	<h3><a name="Info">Class Information</a></h3>
+        CME 194: Introduction to MPI <br />
+        Location: Meyer Forum Room 124 <br />
+        Times: MWF, 3:15-4:05, April 3-24 <br />
+        Office hours: directly after class in same room<br /><br />
+
+	Instructors:
+	<ol id="content">
+          <li> <a href="http://www.stanford.edu/~poulson">Jack Poulson</a> (poulson AT stanford DOT edu)</li>
+          <li> <a href="http://www.hpl.hp.com/personal/Robert_Schreiber">Rob Schreiber</a> (rob DOT schreiber AT hp DOT com)</li>
+	</ol>
+        <br />
+
+        Just-in-time Online Learning Tools (JOLTS):
+        <ol>
+          <li><a href="videos/SetUpVM-Jack.mp4">Setting up the virtual machine (Jack)</a></li>
+          <li><a href="videos/SetUpMPICH2-Jack.mp4">Compiling MPICH2 (Jack)</a></li>
+          <li><a href="videos/IntroToMPI-Rob.mp4">Intro to MPI (Rob)</a></li>
+          <li>Intro to collective communication: <a href="http://www.youtube.com/watch?v=PPFHvV-PEyk">Broadcast</a> and <a href="http://www.youtube.com/watch?v=wR1UiVHqMAw">Reduce</a></li>
+          <li>Dense matrix-vector mult: <a href="http://www.youtube.com/watch?v=2T58P66-fn0">Review of Allgather/ReduceScatter</a>,<a href="http://www.youtube.com/watch?v=UqB3Q9dyTZA&feature=youtu.be">1D decomp</a>, <a href="http://www.youtube.com/watch?v=DzUV4fb7riU">2D decomp</a>, <a href="http://www.youtube.com/watch?v=RLukPs5wjJM">MPI_Comm_split</a></li>
+          <li><a href="http://www.youtube.com/watch?v=oE3ed3Bi74Q">AllToAll</a></li>
+          <li><a href="http://www.youtube.com/watch?v=RVVgAFv1eaw">Parallel rank-k update</a> </li>
+          <li><a href="http://www.youtube.com/watch?v=IoHP7VkixIg">CholeskyQR</a> </li>
+        </ol>
+
+        <h3><a name="DevEnv">Development Environment</a></h3>
+        <div>
+        Students are free to set up their own MPI development environment, but
+        for the sake of simplicity, a 
+        <a href="http://www.debian.org/">Debian</a> virtual machine hard drive 
+        is available <a href="Debian-6.0.6-CME194.vdi.gz">here</a> which 
+        contains a complete MPI development environment. 
+        Simply:
+        <ol>
+          <li>download and unzip <a href="Debian-6.0.6-CME194.vdi.gz">Debian-6.0.6-CME194.vdi.gz</a>,</li>
+          <li>install <a href="https://www.virtualbox.org/">VirtualBox</a>, and</li>
+          <li>create a new Linux (Debian) virtual machine in VirtualBox which  
+              uses the downloaded hard drive.</li>
+        </ol>
+        <br />
+        The usernames and passwords for the virtual machine are:
+        <ol>
+          <li>debian: StanfordCME194</li>
+          <li>root: toor</li>
+        </ol>
+        Please see <a href="videos/SetUpVM-Jack.mp4">this video</a> for more
+        details.
+        </div>
+        <br />
+        <div> 
+        Students who are more comfortable with a command-line may want to 
+        simply download and compile an MPI implementation, such as:
+        <ol>
+          <li><a href="http://www.mpich.org">MPICH2</a></li>
+          <li><a href="http://www.open-mpi.org">OpenMPI</a></li>
+        </ol>
+        <br />
+        Assuming that your system has working compilers installed, this should
+        be as simple as downloading and unpacking the tarballs, and then running
+        <ol>
+          <li><code>configure --prefix=/path/to/install/to</code></li>
+          <li><code>make</code></li>
+          <li><code>make install</code></li>
+        </ol>
+        Please see <a href="videos/SetUpMPICH2-Jack.mp4">this video</a>
+        for more details.
+        </div>
+
+        <h3><a name="Schedule">Schedule</a></h3>
+        <h4>Lecture 1  (Wednesday, April 3) [Rob]</h4>
+        <ul>
+          <li>Motivation and overview of programming model</li>
+          <li>Walkthrough of "Hello, world!" in MPI</li>
+          <li>Communicator sizes and ranks</li>
+          <li>Setting up and finalizing MPI</li>
+          <li>Buffers, item counts, and datatypes</li>
+        </ul>
+        <a href="videos/IntroToMPI-Rob.mp4">JOLT</a> and 
+        <a href="slides/Lecture1.pdf">slides</a>.
+
+        <h4>Lecture 2  (Friday, April 5) [Rob]</h4>
+        <ul>
+          <li>Blocking point-to-point communication</li>
+          <li>An example of inadvertent sequentialization</li>
+          <li>Non-blocking point-to-point communication</li>
+          <li>Simple model for cost of sending a message</li>
+          <li>Message tags and duplicating communicators</li>
+        </ul>
+        <a href="slides/Lecture2.pdf">slides</a>, <a href="examples/passToRight.cpp">passToRight.cpp</a>, <a href="examples/passToRight.c">passToRight.c</a>
+
+        <h4>Lecture 3  (Monday, April 8) [Jack]</h4>
+        <ul>
+          <li>Introduction to collective communication</li>
+          <li>Binomial and long-message Reduce and Broadcast</li>
+          <li>Computing inner-products and various vector norms</li>
+          <li>Homework 1 assigned</li>
+        </ul>
+        <a href="slides/Lecture3.pdf">slides</a>, <a href="http://www.youtube.com/watch?v=PPFHvV-PEyk">JOLT Part 1</a>,<a href="http://www.youtube.com/watch?v=wR1UiVHqMAw">JOLT Part 2</a>,<a href="examples/reduce.cpp">reduce</a>, <a href="examples/scatter.cpp">scatter</a>
+
+        <h4>Lecture 4  (Wednesday, April 10) [Rob]</h4>
+        <ul>
+          <li>Low-rank matrix-vector multiplication</li>
+          <li>Gather, Scatter, and ReduceScatter</li>
+          <li>Introduce strong and weak scalability</li>
+          <li>Why 1D distributions are insufficient for dense matrices</li>
+        </ul>
+        <a href="slides/Lecture4.pdf">slides</a>
+
+        <h4>Lecture 5  (Friday, April 12) [Jack]</h4>
+        <ul>
+          <li>Splitting communicators</li>
+          <li>2D dense matrix-vector multiplication</li>
+          <li>Computing matrix norms and inner-products</li>
+          <li>Homework 2 assigned</li>
+        </ul>
+        <a href="http://www.youtube.com/watch?v=2T58P66-fn0">Review of Allgather/ReduceScatter</a>,<a href="http://www.youtube.com/watch?v=UqB3Q9dyTZA&feature=youtu.be">1D dense mat-vec</a>, <a href="http://www.youtube.com/watch?v=DzUV4fb7riU">2D dense mat-vec</a>, <a href="http://www.youtube.com/watch?v=RLukPs5wjJM">MPI_Comm_split</a>
+
+        <h4>Lecture 6  (Monday, April 15) [Jack]</h4>
+        <ul>
+          <li>All-to-all communication</li> 
+          <li>Redistributing between 1D and 2D matrix distributions</li>
+          <li>Recap of collective communication</li>
+          <li>Computing panel-panel outer-products</li>
+        </ul>
+        <a href="http://www.youtube.com/watch?v=oE3ed3Bi74Q">AllToAll</a>, <a href="http://www.youtube.com/watch?v=RVVgAFv1eaw">Parallel rank-k update</a>
+
+        <h4>Lecture 7  (Wednesday, April 17) [Jack]</h4>
+        <ul>
+          <li>Dense matrix-matrix multiplication</li>
+          <li>Dense LU without pivoting</li>
+          <li>QR factorization of tall-skinny matrices</li>
+        </ul>
+        <a href="http://www.youtube.com/watch?v=IoHP7VkixIg">CholeskyQR</a>
+
+        <h4>Lecture 8  (Friday, April 19) [Jack]</h4>
+        <ul>
+          <li>Sparse All-to-all</li>
+          <li>Sparse matrix-vector multiplication</li>
+          <li>Conjugate Gradients and GMRES(k)</li>
+        </ul>
+
+        <h4>Lecture 9  (Monday, April 22) [Jack]</h4>
+        <ul>
+          <li>Detailed walk-through of randomized SVD</li>
+          <li>Homework 3 assigned</li>
+        </ul>
+        <a href="papers/2010_HMT_random_review.pdf">HMT review paper</a>
+
+        <h4>Lecture 10  (Wednesday, April 24) [Jack]</h4>
+        <ul>
+          <li>3D FFT</li>
+          <li>Sorting</li>
+        </ul>
+        <a href="http://vuduc.org/pubs/czechowski2012-ics-xfft.pdf">Parallel 3D FFTs</a>,<a href="papers/splitting.pdf">Parallel sort with exact splitting</a>
+
+        <h3><a name="Handouts">Handouts</a></h3>
+        <ul>
+          <li><a href="slides/Lecture1.pdf">Lecture 1</a></li>
+          <li><a href="slides/Lecture2.pdf">Lecture 2</a></li>
+          <li><a href="slides/Lecture3.pdf">Lecture 3</a></li>
+          <li><a href="slides/Lecture4.pdf">Lecture 4</a></li>
+        </ul>
+
+        <h3><a name="Homework">Homework</a></h3>
+        <ul>
+          <li>Homework 1: see the end of 
+              <a href="slides/Lecture3.pdf">Lecture 3</a> and 
+              the examples <a href="examples/reduce.cpp">reduce.cpp</a> and 
+              <a href="examples/scatter.cpp">scatter.cpp</a></li>
+          <li>Homework 2: 2D dense matrix-vector multiplication (and the power method), see <a href="examples/pdgemv-sketch.cpp">pdgemv-sketch.cpp</a>
+          <li>Homework 3: 1D sparse matrix-vector multiplication</li>
+        </ul>
+
+	<h3><a name="Resources">Resources</a></h3>
+        <h4>(Open source) MPI implementations</h4>
+	<ul>
+          <li><a href="http://www.mpich.org/">MPICH</a></li>
+          <li><a href="http://mvapich.cse.ohio-state.edu/">MVAPICH</a></li>
+          <li><a href="http://www.open-mpi.org/">OpenMPI</a></li>
+        </ul>
+
+        <h4>Selected books on MPI</h4>
+        <ul>
+          <li><a href="http://www.cs.usfca.edu/~peter/ppmpi/">Parallel Programming with MPI</a></li>
+          <li><a href="http://www.mcs.anl.gov/research/projects/mpi/usingmpi/">Using MPI</a></li>
+        </ul>
+
+        <h4>Related papers</h4>
+        <ul>
+          <li><a href="http://dl.acm.org/citation.cfm?id=1285358.1285359">Collective communication: theory, practice, and experience</a></li>
+          <li><a href="http://dl.acm.org/citation.cfm?id=2145823">Faster topology-aware collective algorithms through non-minimal communication</a></li>
+          <li><a href="http://techreports.lib.berkeley.edu/accessPages/EECS-2008-74.html">Communication-avoiding parallel and sequential QR factorizations</a></li>
+          <li><a href="http://dl.acm.org/citation.cfm?id=2427030">Elemental: A new framework for distributed-memory dense matrix computations</a></li>
+          <li><a href="http://arxiv.org/abs/0909.4061">Finding structure with randomness</a></li>
+          <li><a href="http://vuduc.org/pubs/czechowski2012-ics-xfft.pdf">On the communication complexity of 3D FFTs and its implications for exascale</a></li>
+          <li><a href="papers/splitting.pdf">A scalable parallel sorting algorithm using exact splitting</a></li>
+        </ul>
+
+        <h3><a name="Libraries">(Open source) distributed math libraries</a></h3>
+        <h4>Dense linear algebra</h4>
+        <ul>
+          <li><a href="http://code.google.com/p/elemental">Elemental</a><a href="#Disclaimer"> ***</a></li>
+          <li><a href="http://netlib.org/scalapack">ScaLAPACK</a></li>
+        </ul>
+
+        <h4>Sparse-direct solvers</h4>
+        <ul>
+          <li><a href="http://github.com/poulson/Clique">Clique</a><a href="#Disclaimer"> ***</a></li>
+          <li><a href="http://graal.ens-lyon.fr/MUMPS">MUMPS</a></li>
+          <li><a href="http://pastix.gforge.inria.fr/files/README-txt.html">PaStiX</a></li>
+          <li><a href="http://crd-legacy.lbl.gov/~xiaoye/SuperLU">SuperLU</a></li>
+        </ul>
+
+        <h4>Krylov-subspace eigensolvers</h4>
+        <ul>
+          <li><a href="http://trilinos.sandia.gov/packages/anasazi/">Anasazi</a></li>
+          <li><a href="http://www.caam.rice.edu/~kristyn/parpack_home.html">PARPACK</a></li>
+          <li><a href="http://www.grycap.upv.es/slepc/">SLEPc</a></li>
+        </ul>
+
+        <h4>Fourier(-like) transforms</h4>
+        <ul>
+          <li><a href="http://code.google.com/p/digpufft/">DIGPUFFT</a></li>
+          <li><a href="http://github.com/poulson/dist-butterfly">DistButterfly</a><a href="#Disclaimer"> ***</a></li>
+          <li><a href="http://www.fftw.org">FFTW</a></li>
+          <li><a href="http://code.google.com/p/p3dfft">P3DFFT</a></li>
+          <li><a href="http://www-user.tu-chemnitz.de/~mpip/software.php?lang=en">PFFT</a></li>
+          <li><a href="http://www-user.tu-chemnitz.de/~mpip/software.php?lang=en">PNFFT</a></li>
+        </ul>
+
+        <h4>Fast Multipole Methods</h4>
+        <ul>
+          <li><a href="http://www.bu.edu/exafmm/">ExaFMM</a></li>
+          <li><a href="https://bitbucket.org/petfmm/petfmm-dev">PetFMM</a></li>
+          <li><a href="http://padas.ices.utexas.edu/?page_id=15">pKIFMM</a></li>
+        </ul>
+
+        <h4>PDE Frameworks</h4>
+        <ul>
+          <li><a href="http://depts.washington.edu/clawpack/">Clawpack</a></li>
+          <li><a href="http://www.dealii.org">deal.II</a></li>
+          <li><a href="http://www.dune-project.org/dune.html">DUNE</a></li>
+          <li><a href="http://www.feelpp.org/">Feel++</a></li>
+          <li><a href="http://fenicsproject.org/">FEniCS</a></li>
+          <li><a href="http://www.freefem.org/ff++/">FreeFem++</a></li>
+          <li><a href="http://acts.nersc.gov/hypre/">Hypre</a></li>
+          <li><a href="http://libmesh.sourceforge.net/">libMesh</a></li>
+          <li><a href="http://www.mcs.anl.gov/petsc">PETSc</a></li>
+          <li><a href="http://trilinos.sandia.gov">Trilinos</a></li>
+        </ul>
+
+        <h4>Graph partitioning</h4>
+        <ul>
+          <li><a href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">ParMETIS</a></li>
+          <li><a href="http://www.cs.sandia.gov/Zoltan/ug_html/ug_alg_phg.html">PHG</a></li>
+          <li><a href="http://www.labri.fr/perso/pelegrin/scotch/">PT-Scotch</a></li>
+        </ul>
+
+        <h4>Adaptive Mesh Refinement</h4>
+        <ul>
+          <li><a href="http://depts.washington.edu/clawpack/">AMRClaw</a></li>
+          <li><a href="http://amroc.sourceforge.net/">AMROC</a></li>
+          <li><a href="https://ccse.lbl.gov/BoxLib/">BoxLib</a></li>
+          <li><a href="https://commons.lbl.gov/display/chombo/Chombo+-+Software+for+Adaptive+Solutions+of+Partial+Differential+Equations">Chombo</a></li>
+          <li><a href="http://www.p4est.org/">p4est</a></li>
+          <li><a href="http://www.physics.drexel.edu/~olson/paramesh-doc/Users_manual/amr.html">PARAMESH</a></li>
+          <li><a href="https://computation.llnl.gov/casc/SAMRAI/index.html">SAMRAI</a></li>
+        </ul>
+
+        <br />
+        <a name="Disclaimer"><em>*** Disclaimer: one or more of the instructors is affiliated with this project</em></a>
+
+	<p class="credits">&copy; 2013 Jack Poulson<br />
+	  Template design by <a href="http://andreasviklund.com/">Andreas Viklund</a><br />
+          Modified from Austin Benson's <a href="http://www.stanford.edu/~arbenson/cme193.html">Introduction to Scientific Python</a></p>
+      </div>
+    </div>
+  </body>
+</html>

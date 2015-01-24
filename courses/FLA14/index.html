@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="CSE 8803: Fast Linear Algebra" />
+    <meta name="keywords" content="Pivoted factorizations,Barnes-Hut,FMM,structured matrices, butterfly algorithm" />
+    <meta name="author" content="Jack Poulson" />
+    <link rel="stylesheet" type="text/css" href="basic-profile.css" title="Basic Profile" media="all" />
+    <title>CSE 8803: Fast Linear Algebra</title>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <div id="sidebar">
+        <a href="index.html"><img src="images/StrongHMat.png" height="220" alt="2D H-matrix" /></a>
+	<ul>
+	  <li><a href="#Info">Information</a></li>
+          <li><a href="#Schedule">Schedule</a></li>
+          <li><a href="#Handouts">Handouts</a></li>
+          <li><a href="#Homework">Homework</a></li>
+          <li><a href="#Projects">Projects</a></li>
+	  <li><a href="#Resources">Resources</a></li>
+	</ul>
+      </div>
+
+      <div id="content">
+        <h1>Fast Linear Algebra</h1>
+	<i>
+The limiting factor in many grand challenge engineering problems is the
+rate at which one can analyze corresponding large-scale structured
+linear operators. This course therefore introduces a variety of
+techniques for exploiting several common types of structure, especially
+those involving sparsity or low-rank interactions, in order to
+efficiently apply or invert important classes of matrices.
+
+The class will begin with a review of algorithms for pivoted
+factorizations and low-rank approximations and then expand into
+algebraic discussions of Fast Multipole Methods, hierarchical matrices,
+butterfly algorithms, and related recently introduced techniques.
+Students should leave the course with a deep enough understanding to
+implement these algorithms in their most basic form.
+        </i>
+
+	<h3><a name="Info">Class Information</a></h3>
+        CSE 8803: Fast Linear Algebra <br />
+	Instructor: <a href="http://www.stanford.edu/~poulson">Jack Poulson</a> (jpoulson AT cc DOT gatech DOT edu) <br />
+        Prerequisite: CSE/MATH 6643 (Numerical Linear Algebra) <br />
+        Location: College of Computing 53 (Basement) <br />
+        Times: T/Th, 9:35-10:55, January 6-May 3, 2014 <br />
+        Office hours: directly after class in Klaus 1302<br /><br />
+
+        Rough course outline:
+        <ol id="content">
+          <li>Pivoted Cholesky/LDL/LU/QR decompositions 
+              (rook-pivoting, Bunch-Kaufman, Businger-Golub, etc.)</li>
+          <li>Sparse-direct factorization</li>
+          <li>Barnes-Hut and loglinear matrix/vector multiplication</li>
+          <li>The Fast Multipole Method and linear matrix/vector multiplication</li>
+          <li>The butterfly algorithm</li>
+          <li>Structured matrix factorization and inversion</li>
+        </ol>
+        <br />
+
+        Code samples (currently in 
+        <a href="https://www.gnu.org/software/octave/">Octave</a> / 
+        <a href="http://www.mathworks.com/products/matlab/">MATLAB</a>) are
+        <a href="http://github.com/poulson/FLAExamples">available on GitHub</a>.
+        <br />
+
+        <h3><a name="Schedule">Schedule</a></h3>
+        <h4>Lecture 1  (Tuesday, January 7)</h4>
+        <ul>
+          <li>Where giant problems arise</li>
+          <li>Brief review of asymptotic complexities of common algorithms</li>
+          <li>Why low-rank approximations are useful</li>
+          <li>High-level sketch of course</li>
+          <li>Group discussion of goals for course</li>
+        </ul>
+
+        <h4><a href="handouts/Lecture02-Jan09.pdf">Lecture 2 (Thursday, January 9)</a></h4>
+        <ul>
+          <li>Review: diagonalizable, normal, Hermitian, and unitary matrices</li> 
+          <li>Cholesky factorization</li>
+        </ul>
+
+        <h4>Lecture 3 (Tuesday, January 14), given by <a href="http://www.cc.gatech.edu/~echow">Prof. Edmond Chow</a></h4>
+        <ul>
+          <li>Gaussian elimination with no pivoting</li>
+          <li>Gaussian elimination with partial pivoting</li>
+          <li>Gaussian elimination with full pivoting</li>
+          <li>Gaussian elimination with rook pivoting (and ACA)</li>
+        </ul>
+        Reference: Chapter 9, "LU Factorization and Linear Equations" of 
+              Higham's <a href="http://www.maths.manchester.ac.uk/~higham/asna/">Accuracy and stability of numerical algorithms</a>
+
+        <h4>Lecture 4 (Tuesday, January 21)</h4>
+        <ul>
+          <li>Review of pivoted LU</li>
+          <li>Householder transformations</li>
+          <li>Householder QR factorization</li>
+          <li>Businger-Golub pivoted QR factorization</li>
+          <li>Simple randomized low-rank discovery</li>
+        </ul>
+        References:
+        <ul>
+          <li>Chapter 19, "QR factorization" of Higham's <a href="http://www.maths.manchester.ac.uk/~higham/asna/">Accuracy and stability of numerical algorithms</a></li>
+          <li>Halko et al.'s <a href="http://arxiv.org/abs/0909.4061">Finding structure with randomness</a></li>
+        </ul>
+
+        <h4>Lecture 5 (Thursday, January 23)</h4>
+        <ul>
+          <li>Why matrix-matrix multiplication is efficient</li>
+          <li>Blocked Cholesky factorization</li>
+          <li>Accumulating Householder transformations</li>
+          <li>Blocked QR factorization</li>
+          <li>Lower bound for data movement in matrix-matrix multiplication</li>
+        </ul>
+        References:
+        <ul>
+          <li>Chapter 19, "QR factorization" of Higham's <a href="http://www.maths.manchester.ac.uk/~higham/asna/">Accuracy and stability of numerical algorithms</a></li>
+          <li>Joffrain et al.'s <a href="http://dl.acm.org/citation.cfm?id=1141886">Accumulating Householder transformations, revisited</a></li>
+          <li>Irony et al.'s <a href="http://www.sciencedirect.com/science/article/pii/S0743731504000437">Communication lower bounds for distributed-memory matrix multiplication</a></li>
+        </ul>
+
+        <h4>Lecture 6 (Tuesday, February 4)</h4>
+        <ul>
+          <li>Cholesky with diagonal/full pivoting</li>
+          <li>Review of element growth in LU</li>
+          <li>Bunch-Kaufman factorization</li>
+        </ul>
+        References:
+        <ul>
+          <li>Section 10.3, "Positive Semidefinite Matrices", of Highams's
+              <a href="http://www.maths.manchester.ac.uk/~higham/asna/">Accuracy and stability of numerical algorithms</a></li>
+          <li>Chapter 11, "Symmetric Indefinite and Skew-Symmetric Systems", of 
+              Higham's <a href="http://www.maths.manchester.ac.uk/~higham/asna/">Accuracy and stability of numerical algorithms</a></li>
+          <li>Druinky and Toledo's <a href="http://epubs.siam.org/doi/abs/10.1137/100801548">The growth-factor bound for the Bunch-Kaufman factorization is tight</a></li>
+        </ul>
+
+        <h4>Lecture 7 (Thursday, February 6)</h4>
+        <ul>
+          <li>Review of blocked Cholesky factorization</li>
+          <li>Arrowhead Cholesky factorization</li>
+          <li>Multifrontal arrowhead Cholesky factorization</li>
+          <li>Graph separators and nested dissection</li>
+        </ul>
+
+        <h4>Lecture 8 (Tuesday, February 25)</h4>
+        <ul>
+          <li>Review of arrowhead Cholesky factorization</h4>
+          <li>Arrowhead forward and backward triangular solves</h4>
+          <li>Two-level arrowhead matrices</li>
+          <li>Original and factored nonzero "structure" of supernodes</li>
+        </ul>
+
+        <h4>Lecture 9 (Thursday, February 27)</h4>
+        <ul>
+          <li>Review of original and factored structure</li>
+          <li>Ancestors and descendents</li>
+          <li>"Optimal symbolic factorization"</li>
+          <li>Runtime and memory analysis of sparse-direct vs. dense 
+              techniques</li> 
+        </ul>
+
+        <h4>Lecture 10 (Tuesday, March 4)</h4>
+        <ul>
+          <li>Detailed analysis of work/memory usage for each front</li>
+          <li>Effects of separator size on 
+              sparse-direct/dense work/memory in 1D/2D/3D/beyond</li>
+          <li>High-level view of multi-level graph partitioning</li>
+        </ul>
+
+        <h4>Lecture 11 (Thursday, March 6)</h4>
+        <ul>
+          <li>Review of the power method (and shift-and-invert)</li>
+          <li>Looking in the span of the iterates (a <em>Krylov subspace</em>)
+          <li>The continuity of scalar and matrix-valued Rayleigh quotients</li>
+          <li>Eigenpairs of Rayleigh quotients of invariant subspaces</li>
+          <li>Ritz pairs</li>
+          <li>FOM as a prototype of Krylov-subspace linear solvers</li>
+        </ul>
+
+        <h4>Lecture 12 (Tuesday, March 11)</h4>
+        <ul>
+          <li>Review of scalar and matrix-valued Rayleigh quotients</li>
+          <li>An example of FOM breaking down</li>
+          <li>Orthonormal Krylov decompositions</li>
+        </ul>
+
+        <h4>Lecture 13 (Thursday, March 13)</h4>
+        <ul>
+          <li>Review of nesting property of Krylov subspaces</li>
+          <li>Review of orthonormal Krylov decompositions</li>
+          <li>Specializing to Arnoldi decompositions</li>
+          <li>Generalized Minimum RESidual method (GMRES)</li>
+        </ul>
+
+        <h4>Lecture 14 (Tuesday, March 25)</h4>
+        <ul>
+          <li>Barnes-Hut (H-matrix/vector multiplication)</li>
+        </ul>
+
+        <h4>Lecture 15 (Thursday, March 27)</h4>
+        <ul>
+          <li>Translating temporary products between two equivalent
+              low-rank representations</li>
+          <li>Weakly-admissible FMM</li>
+        </ul>
+
+        <h4>Lecture 16 (Tuesday, April 1)</h4>
+        <ul>
+          <li>Strongly-admissible FMM</li>
+          <li>Strongly-admissible H-matrices (see <a href="images/StrongHMat.png">image for course website</a>)
+          <li>Composing two low-rank matrices</li>
+          <li>Summing and compressing two low-rank matrices</li>
+          <li>H-matrix multiplication</li>
+        </ul>
+
+        <h4>Lecture 17 (Thursday, April 3)</h4>
+        <ul>
+          <li>Converting sparse matrices into H-matrix form</li>
+          <li>H-matrix factorization</li>
+          <li>Schulz iteration for H-matrix inversion</li>
+          <li>Complexity analysis relative to sparse-direct</li>
+        </ul>
+
+        <h3><a name="Handouts">Handouts</a></h3>
+        <ul>
+          <li>Lecture 2: <a href="handouts/Lecture02-Jan09.pdf">Classes of matrices and Cholesky factorization</a></li>
+        </ul>
+
+        <h3><a name="Homework">Homework</a></h3>
+        <ul>
+          <li>Homework 1: Write a Cholesky factorization routine in your favorite programming language</li>
+          <li>Homework 2: Write a rook-pivoted LU factorization</li> 
+          <li>Homework 3: Write a column-pivoted QR factorization</li>
+          <li>Homework 4: Write a Bunch-Kaufman LDL^T factorization</li>
+          <li>Homework 5: Prove the optimal symbolic factorization formula</li>
+        </ul>
+
+        <h3><a name="Projects">Projects</a></h3>
+        <ul>
+          <li><strong>[Proposed]</strong>
+              Code and employ rook-pivoted LU, Adaptive Cross Approximation,
+              and pivoted QR in order to approximate the off-diagonal blocks
+              of the inverse of a 2000 d.o.f. 1D discrete Laplacian (or Gaussian
+              process matrix) in a 
+              low-rank manner and compare the runtimes and accuracy for a 
+              fixed-rank approximation.</li>
+          <li><strong>[Proposed and accepted]</strong>
+              Approximate the off-diagonal blocks of a 2000 x 2000 1D 
+              discrete Laplacian (or Gaussian process matrix) as low-rank and 
+              use a hierarchy of these
+              approximations to apply the matrix to a vector in O(N lgN) time
+              (this is
+               <em>weakly-admissible H-matrix/vector multiplication</em>)</li>
+          <li><strong>[Proposed]</strong>
+              Implement a basic Arnoldi-decomposition based Krylov-subspace 
+              eigensolver and use it to quickly compute the top ten 
+              eigenvalues of a large 2D Laplacian and a large FFT operator. 
+              The accuracy and runtime should be compared with that of 
+              a dense eigensolver.</li>
+          <li><strong>[Proposed and accepted]</strong>
+              Write a dense blocked Bunch-Kaufman (starting with a
+              dense blocked diagonal-pivoted Cholesky) and compare the accuracy
+              and performance on Wigner matrices to that of blocked LDL^T
+              and unblocked Bunch-Kaufman.</li>
+          <li><strong>[Proposed and accepted]</strong>
+              Implement GMRES from scratch (all nontrivial linear algebra
+              operations, including a quadratic-time Hessenberg QR 
+              factorization) and use it to solve a million-d.o.f. 2D 
+              weighted-Laplacian system. The runtime and accuracy should be 
+              compared to that of MATLAB's sparse-direct solver and GMRES</li>
+          <li><strong>[Custom accepted]</strong> 
+              Write a dense Cholesky updating routine 
+              (for appreciation) and interface with Tim Davis's 
+              <a href="http://www.cise.ufl.edu/research/sparse/cholmod/">CholMod</a>
+              in order update the Cholesky factorization of a sparse matrix.
+              The timings for the update should be compared with that of a
+              complete refactorization as well as with that of a dense update
+              and dense factorization (or estimate thereof).</li>
+          <li><strong>[Custom accepted]</strong>
+              Build a pivoted-QR-based SVT approximation and use this
+              to code an ADMM algorithm for Low-Rank Plus Sparse
+              decompositions</li>
+        </ul>
+
+	<h3><a name="Resources">Resources</a></h3>
+
+        <h4>Selected literature for classical linear algebra</h4>
+        <ul>
+          <li>Nicholas J. Higham, <a href="http://www.maths.manchester.ac.uk/~higham/asna/">Accuracy and stability of numerical algorithms</a></li>
+          <li>Trefethen and Bau, <a href="http://people.maths.ox.ac.uk/trefethen/text.html">Numerical Linear Algebra</a></li>
+          <li>Golub and van Loan, <a href="http://www.cs.cornell.edu/cv/GVL4/golubandvanloan.htm">Matrix Computations</a></li>
+        </ul>
+
+        <h4>Selected literature for fast algorithms</h4>
+        <ul>
+          <li>Greengard and Rokhlin, <a href="https://www.sciencedirect.com/science/article/pii/S0021999197957065">A fast algorithm for particle simulations</a></li>
+          <li>Ying/Biros/Zorin, <a href="http://math.stanford.edu/~lexing/publication/fmm.pdf">A kernel-independent adaptive fast multipole algorithm in two and three dimensions</a></li>
+          <li>Mario Bebendorf, <a href="https://www.springer.com/mathematics/computational+science+%26+engineering/book/978-3-540-77146-3">Hierarchical Matrices</a></li>
+          <li>O'Neil/Woolfe/Rokhlin, <a href="http://www.sciencedirect.com/science/article/pii/S1063520309000888">An algorithm for the rapid evaluation of special function transforms</a>
+          <li>Candes/Demanet/Ying, <a href="http://arxiv.org/abs/0809.0719">A fast butterfly algorithm for the computation of Fourier Integral Operators</a></li>
+          <li>Liberty et al., <a href="http://www.pnas.org/content/104/51/20167.long">Randomized algorithms for the low-rank approximation of matrices</a></li>
+        </ul>
+
+        <h4>Reference libraries for classical linear algebra</h4>
+	<ul>
+          <li>Dongarra et al., <a href="http://www.netlib.org/blas">Basica Linear Algebra Subprograms (BLAS)</a></li>
+          <li>Van Zee et al., <a href="http://code.google.com/p/blis/">BLAS-like Library Instantiation Software (BLIS)</a></li>
+          <li>Demmel et al., <a href="http://www.netlib.org/lapack">Linear Algebra PACKage (LAPACK)</a></li>
+        </ul>
+
+        <h4>Reference sparse-direct solvers</h4>
+        <ul>
+          <li>Davis et al., <a href="https://www.cise.ufl.edu/research/sparse/SuiteSparse/">SuiteSparse</a></li>
+          <li>Saunders et al., <a href="http://www.stanford.edu/group/SOL/software/lusol.html">LUSol</a></li>
+          <li>Li et al., <a href="http://crd-legacy.lbl.gov/~xiaoye/SuperLU/">SuperLU</a></li>
+        </ul>
+
+        <h4>Reference Fast Multipole Method implementations</h4>
+        <ul>
+          <li>Barba et al., <a href="http://www.bu.edu/exafmm/">ExaFMM</a></li>
+          <li>Biros et al., <a href="http://padas.ices.utexas.edu/software/">pKIFMM</a></li>
+        </ul>
+
+        <h4>Reference H-matrix implementations</h4>
+        <ul>
+          <li>Bebendorf et al., <a href="http://bebendorf.ins.uni-bonn.de/AHMED.html">Another software library on Hierarchical Matrices for Elliptic Differential equations (AHMED)</a> (non-commercial, educational license)</li>
+          <li>Borm et al., <a href="http://www.hlib.org/hlib.html">HLib</a> (non-commercial, educational license)</li>
+        </ul>
+
+        <h4>Reference butterfly algorithm implementations</h4>
+        <ul>
+          <li>Poulson et al., <a href="http://github.com/poulson/dist-butterfly">DistButterfly</a></li>
+        </ul>
+
+	<p class="credits">&copy; 2014 Jack Poulson<br />
+	  Template design by <a href="http://andreasviklund.com/">Andreas Viklund</a><br />
+          Modified from Austin Benson's <a href="http://www.stanford.edu/~arbenson/cme193.html">Introduction to Scientific Python</a></p>
+      </div>
+    </div>
+  </body>
+</html>
