@@ -23,4 +23,6 @@ Furthermore, I have previously been supported by:
 
 But, more realistically, and perhaps controversially, my largest potential 
 conflict of interest is that my current position is up for renewal in a few 
-years.
+years. Thus, my current position is indirectly tied to the opinions of a small 
+group of researchers, and it would be a lie to say that this fact does not at 
+least give me pause before voicing public opinions.
