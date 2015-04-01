@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![Jack Poulson]({{ site.baseurl }}/assets/Jack.png)
+![Jack Poulson]({{ site.baseurl }}/assets/JackBigSur.jpg)
 
 Jack Poulson is an 
 [Assistant Professor of Mathematics at Stanford University](http://mathematics.stanford.edu/people/name/jack/) and 
