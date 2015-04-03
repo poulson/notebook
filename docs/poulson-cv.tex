@@ -71,7 +71,7 @@
   \begin{tabular}{ll}
     Phone:&(404)431-9261 \\
     Email:&\href{mailto:poulson@stanford.edu}{\tt poulson@stanford.edu} \\
-    Homepage: & \href{http://www.stanford.edu/~poulson}{\tt http://www.stanford.edu/\textasciitilde poulson} \\
+    Homepage: & \href{http://web.stanford.edu/~poulson}{\tt web.stanford.edu/\textasciitilde poulson} \\
   \end{tabular}
 \end{minipage}
 
@@ -103,39 +103,37 @@
 
 \begin{itemize}
 \item {\bf Elemental}, Primary Author, 2009-\\
-A high-performance framework for distributed-memory dense and sparse-direct linear algebra and optimization.\\ 
+A high-performance framework for distributed-memory dense and sparse-direct linear algebra and optimization.The functionality spans distributed sparse Interior Point Methods for Quadratic Programs, high-performance distributed 
+pseudospectra, and distributed sparse generalized Least Squares problems. \\ 
 {\it Actively maintained and supported}\\
 Available at 
-\href{http://libelemental.org}{\tt 
-      http://libelemental.org} under the New BSD License.
+\href{http://libelemental.org}{\tt libelemental.org} under the New BSD License.
 
 \item {\bf Real-Time Low-rank Plus Sparse MRI}, Primary Author, 2013-\\
 Distributed L+S decomposition for accelerated dynamic MRI.\\ 
-{\it New implementation}\\
+{\it Prototype implementation}\\
 Available at
-\href{http://github.com/poulson/rt-lps-mri}{\tt
-      http://github.com/poulson/rt-lps-mri} under the New BSD License.
+\href{https://github.com/poulson/rt-lps-mri}{\tt github.com/poulson/rt-lps-mri} 
+under the New BSD License.
 
 \item {\bf DistButterfly}, Primary Author, 2010-\\
 Distributed butterfly algorithms for non-uniform oscillatory transforms.\\
-{\it Actively supported}\\
+{\it Supported but not currently actively developed}\\
 Available at
-\href{http://github.com/poulson/dist-butterfly}{\tt
-      http://github.com/poulson/dist-butterfly} under GPLv3.
+\href{https://github.com/poulson/dist-butterfly}{\tt github.com/poulson/dist-butterfly}
+ under GPLv3.
 
 \item {\bf Parallel Sweeping Preconditioner (PSP)}, Primary Author, 2011-\\
 A prototype sweeping preconditioner for large 3d Helmholtz problems with  PML.\\
-{\it Actively supported}\\
+{\it Previously actively supported; should be reimplemented using Elemental}\\
 Available at
-\href{http://github.com/poulson/PSP}{\tt
-      http://github.com/poulson/PSP} under GPLv3.
+\href{https://github.com/poulson/PSP}{\tt github.com/poulson/PSP} under GPLv3.
 
 \item {\bf Distributed-Memory Hierarchical Matrices (DMHM)}, Primary Author, 2011-\\
 A prototype of distributed-memory $\mathcal{H}$-matrix arithmetic. \\
 {\it Proof of concept}\\
 Available at
-\href{http://bitbucket.org/poulson/dmhm}{\tt
-      http://bitbucket.org/poulson/dmhm} under GPLv3.
+\href{https://bitbucket.org/poulson/dmhm}{\tt bitbucket.org/poulson/dmhm} under GPLv3.
 
 %\item {\bf Elemental Krylov Spectral (EKS)}, Primary Author, Summer 2012 \\
 %An implementation of the Krylov-spectral method geared towards large numbers of 
@@ -292,6 +290,11 @@ Parallel matrix multiplication: A systematic journey, {\it SIAM Journal on Scien
 \section*{Invited Talks}
 
 \begin{tabular}{rlll}
+04/2015 & Data Science Seminar            & Uber                          & San Francisco, CA \\
+04/2015 & Applied Math. Colloquium        & UCLA                          & Los Angeles, CA \\
+03/2015 & Comput. Sci \& Eng.             & SIAM                          & Salt Lake City, UT \\
+02/2015 & Lin. Alg. \& Opt. Seminar       & Stanford University           & Stanford, CA \\
+12/2014 & Parallel Computing Lab          & Intel                         & Sunnyvale, CA \\
 11/2014 & CASC Seminar                    & LLNL                          & Livermore, CA \\
 11/2014 & Applied Math Seminar            & Stanford University           & Stanford, CA \\
 10/2014 & AMCS Seminar                    & KAUST                         & Thuwal, KSA \\
@@ -302,11 +305,11 @@ Parallel matrix multiplication: A systematic journey, {\it SIAM Journal on Scien
 09/2014 & Applied Math Seminar            & MIT                           & Cambridge, MA \\
 07/2014 & Annual Meeting                  & SIAM                          & Chicago, IL \\
 07/2014 & Parallel Matrix Alg.\ and Appl. & USI                           & Lugano, Switzerland \\
-01/2014 & Math+X Seminar                  & Stanford                      & Stanford, CA \\
+01/2014 & Math+X Seminar                  & Stanford University           & Stanford, CA \\
 12/2013 & Fall Meeting                    & AGU                           & San Francisco, CA \\
 11/2013 & CSE Seminar                     & Georgia Institute of Tech.\   & Atlanta, GA \\
-10/2013 & ICME LA/Opt Seminar             & Stanford                      & Stanford, CA \\
-08/2013 & SEP Seminar                     & Stanford                      & Stanford, CA \\
+10/2013 & ICME LA/Opt Seminar             & Stanford University           & Stanford, CA \\
+08/2013 & SEP Seminar                     & Stanford University           & Stanford, CA \\
 06/2013 & ICS                             & ACM/SIGARCH                   & Eugene, OR \\
 03/2013 & TCCS                            & University of Texas at Austin & Houston, TX \\
 01/2013 & CSE Seminar                     & Georgia Institute of Tech.\   &  Atlanta, GA \\
@@ -328,10 +331,17 @@ Parallel matrix multiplication: A systematic journey, {\it SIAM Journal on Scien
 
 \section*{Teaching}
 \begin{tabular}{lll}
-Spring 2015 & Math in the Real World                      & Stanford University \\
+Spring 2015 & Mathematics in the Real World               & Stanford University \\
+            & \href{http://web.stanford.edu/~poulson/courses/MitRW15}{\tt web.stanford.edu/\textasciitilde poulson/courses/MitRW15} & Undergraduate-level (non-major) \\
+ & & \\
 Winter 2015 & Advanced Topics in Numerical Linear Algebra & Stanford University \\
+            & \href{http://web.stanford.edu/~poulson/courses/ATiNLA15}{\tt web.stanford.edu/\textasciitilde poulson/courses/ATiNLA15} & Graduate-level \\
+ & & \\
 Spring 2014 & Fast Linear Algebra                         & Georgia Institute of Tech.\ \\
+            & \href{http://web.stanford.edu/~poulson/courses/FLA14}{\tt web.stanford.edu/\textasciitilde poulson/courses/FLA14} & Graduate-level \\
+ & & \\
 Spring 2013 & Introduction to MPI (short course)          & Stanford University \\
+            & & Graduate-level \\
 \end{tabular}
 
 %\section*{Mentoring}
@@ -353,6 +363,7 @@ Reviewer & IEEE Transactions on Signal Processing \\
 Reviewer & International Journal of High Performance Computing \\
 Reviewer & Journal of Computational Physics \\
 Reviewer & Journal of Parallel and Distributed Computing \\
+Reviewer & PeerJ Computer Science \\
 Reviewer & SIAM Journal on Computing \\
 Reviewer & SIAM Journal on Scientific Computing \\
 External Reviewer & Communications in Mathematical Sciences \\
@@ -376,11 +387,12 @@ Guest Editor & ACM XRDS, 2012
 
 \subsection*{Conference Stewardship}
 \begin{tabular}{lll}
-PC member & IEEE CSE & 2015 \\
-PC member & IPDPS & 2015 \\
-PC member & XSEDE & 2014 \\
-PC member & PGAS & 2014 \\
-PC member & IMUDI & 2012-2013 \\
+Editorial Board Member & SISC Special Section for CSE15 (CSE Software) & 2015 \\
+Program Committee Member & IEEE CSE & 2015 \\
+Program Committee Member & IPDPS & 2015 \\
+Program Committee Member & XSEDE & 2014 \\
+Program Committee Member & PGAS & 2014 \\
+Program Committee Member & IMUDI & 2012-2013 \\
 %Member    & NSF Review Panel & 2014
 \end{tabular}
 %\begin{itemize}
@@ -414,6 +426,7 @@ Member           & PhD Committee for Dr. Christopher Turnes & Georgia Tech & 201
 
 \section*{Funding and Awards}
 \begin{itemize}
+\item 2015 - DARPA XDATA, AFRL Contract FA8750-12-2-0306
 \item 2014 - DARPA XDATA, AFRL Contract FA8750-13-C-0002
 \item 2013 - NSF SSI-SI2 Supplement, Co-PI, ACI-$1148125$
 \item 2013 - UT Austin Outstanding Dissertation Award
