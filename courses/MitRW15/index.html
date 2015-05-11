@@ -11,7 +11,7 @@
   <body>
     <div id="wrap">
       <div id="sidebar">
-        <a href="index.html"><img src="images/bringData.png" height="220" alt="bring data" /></a>
+        <a href="index.html"><img src="images/random-walk.png" height="220" alt="random walk (2D)" /></a>
 	<ul>
 	  <li><a href="#Info">Information</a></li>
           <li><a href="#Schedule">Schedule</a></li>
@@ -23,7 +23,7 @@
       <div id="content">
         <h1>Mathematics in the Real World</h1>
 	<i>
-Introduction to non-calculus applications of mathematical ideas and principles in real-world problems. Topics include probability and the notion of an expectation, linearity, basic statistical concepts (e.g., regression), and geometric series. Applications include insurance models, gambler's ruin, false positives in disease testing, and mortgage rates. No knowledge of calculus required. Enrollment limited to students who do not have Stanford credit for a high school or college course in calculus or statistics. 
+Introduction to non-calculus applications of mathematical ideas and principles in real-world problems. Topics include probability and the notion of an expectations, estimation with respect to the one and two norms, linearity, basic statistical concepts (e.g., regression), and geometric series. Applications include insurance models, gambling, and high-level techniques for analyzing random and noisy data. No knowledge of calculus required. Enrollment limited to students who do not have Stanford credit for a high school or college course in calculus or statistics. 
         </i>
 
 	<h3><a name="Info">Class Information</a></h3>
@@ -34,14 +34,29 @@ Introduction to non-calculus applications of mathematical ideas and principles i
         Location: Building 380, Room 380W<br />
         </ul>
 
+        <h4>Midterm Exam:</h4>
+        Location: Building 380, Room 380X<br />
+        Time: 9am, Friday, May 1<br />
+        <br />
+
+        <h4>Midterm Makeup-Exam:</h4>
+        Location: Building 380, Room 384Y<br />
+        Time: 10am, Monday, May 4<br />
+        <br />
+
+        <h4>Final Exam:</h4>
+        Location: Building 380, Room 380X<br />
+        Time: 8:30am-11:30am<br />
+        <br />
+
         <h4>Office hours</h4>
         Location: Building 380, Office 384Y<br />
         Time: 11am Tuesdays<br />
         <br />
 
         <h4>Discussion section</h4>
-        Location: TBA
-        Time: 11am on occasional Thursdays
+        Location: 384Y
+        Time: 11am on occasional Thursdays (e.g., April 30)
         </h4>
 
         <h3><a name="Schedule">Schedule</a></h3>
@@ -50,18 +65,109 @@ Introduction to non-calculus applications of mathematical ideas and principles i
         <ul>
           <li>Logistics</li>
           <li>Three definitions of the sizes of sets of numbers</li>
-          <li><a href="http://nbviewer.ipython.org/github/poulson/MitRW/blob/master/Lecture01-QuantifyingError.ipynb">Notebook on "quantifying approximation error"</a></li>
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook01-QuantifyingError.html">Notebook on "quantifying approximation error"</a></li>
         </ul>
 
-	<h3><a name="Resources">Resources</a></h3>
+        <h4>Meeting 2 (Wednesday, April 1)</h4>
         <ul>
-          <li><a href="http://nbviewer.ipython.org/github/poulson/MitRW/blob/master/Lecture01-QuantifyingError.ipynb">Lecture 1: Quantifying approximation error</a></li>
+          <li>Discussion of background material (summation signs, maxima, and p-roots)</li>
+          <li>Further discussion of <a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook01-QuantifyingError.html">Notebook 1</a></li>
+        </ul>
+
+        <h4>Meeting 3 (Friday, April 3)</h4>
+        <ul>
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook02-ExpectationsAndSimpleCoinGames.html">Notebook on expectations and simple coin games (and Homework 1)</a></li>
+        </ul>
+
+        <h4>Meeting 4 (Monday, April 6)</h4>
+        <ul>
+          <li>Further refinement of the notion of mathematical expectation</li> 
+          <li>Analyzing coin-flip games involving weighted coins</li>
+        </ul>
+
+        <h4>Meeting 5 (Wednesday, April 8)</h4>
+        <ul>
+          <li>Physically playing the "keep flipping until tails" game with both
+              fair and weighted coins twenty times (using a six-sided die)</li>
+          <li>Brief discussion on <strong>standard deviations</strong></li>
+        </ul>
+
+        <h4>Meeting 6 (Friday, April 10)</h4>
+        <ul>
+          <li>Homework 1 due</li>
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook03-Experiment.html">Simulating the "keep flipping until tails" game with fair and weighted coins</a></li>
+        </ul>
+
+        <h4>Meeting 7 (Monday, April 13)</h4>
+        <ul>
+          <li>Introduction to variance and standard deviation</li>
+        </ul>
+ 
+        <h4>Meeting 8 (Wednesday, April 15)</h4>
+        <ul>
+          <li>Variance and standard deviation of random walks</li>
+        </ul>
+
+        <h4>Meeting 9 (Friday, April 17)</h4>
+        <ul>
+          <li>Intro to Mean Absolute Deviation of a random walk</li>
+        </ul>
+
+        <h4>Meeting 10 (Monday, April 20)</h4>
+        <ul>
+          <li>Introduction to binomial coefficients</li>
+          <li>(Addendum on the "zero-norm" and estimation via the mode)</li>
+        </ul>
+
+        <h4>Meeting 11 (Friday, April 24)</h4>
+        <ul>
+          <li>Review of binomial coefficients and application to MAD</li>
+          <li>Interquartile Ranges (IQR) and "box and whisker" plots</li>
+          <li>Announcement for HW 2 (due Wednesday, April 29)</li>
+          <li>Announcement for Midterm (in class on Friday, May 1)</li>
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook04-RandomWalks.html">Notebook 4: Random walks and the notion of spread (and Homework 2)</a></li>
+        </ul>
+
+        <h4>Meeting 12 (Monday, April 27)</h4>
+        <ul>
+          <li>Introduction to linear regression</li>
+        </ul>
+
+        <h4>Meeting 13 (Wednesday, April 29)</h4>
+        <ul>
+          <li>Introduction to matrices and linear functions</li>
+        </ul>
+
+        <h4>Meeting 14 (Friday, May 1)</h4>
+        <ul>
+          <li>In-class Midterm</li>
+        </ul>
+
+	<h4><a name="Resources">Resources</a></h3>
+        <ul>
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook01-QuantifyingError.html">Notebook 1: Quantifying approximation error</a></li>
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook02-ExpectationsAndSimpleCoinGames.html">Notebook 2: Expectations and simple coin games (and Homework 1)</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/SolutionsForHomework1.html">Solutions for Homework 1</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook03-Experiment.html">Notebook 3: Simulating the "keep flipping until tails" game</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Notebook04-RandomWalks.html">Notebook 4: Random walks and the notion of spread (and Homework 2)</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/SolutionsForHomework2.html">Solutions for Homework 2</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Midterm.pdf">Midterm</a>, and the <a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Midterm-solutions.html">solutions</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Midterm-retake.pdf">Midterm retake (morning)</a>, and the <a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Midterm-retake-solutions.html">solutions</a></li>
+
+          <li><a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Midterm-retake-afternoon.pdf">Midterm retake (afternoon)</a>, and the <a href="http://web.stanford.edu/~poulson/courses/MitRW15/notes/Midterm-retake-afternoon-solutions.html">solutions</a></li>
+
         </ul>
 
 	<h3><a name="Grading">Grading</a></h3>
         <ul> 
           <li>40% homework</li>
-          <li>20% participation</li>
+          <li>20% participation/attendance</li>
           <li>20% midterm</li>
           <li>20% final</li>
         </ul>
