@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Notebook02-ExpectationsAndSimpleCoinGames</title>
+<title>SolutionsForHomework3</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,7 +177,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mathematics-in-the-Real-World">Mathematics in the Real World<a class="anchor-link" href="#Mathematics-in-the-Real-World">&#182;</a></h2><h3 id="Expectations-and-simple-coin-games-(and-Homework-1)">Expectations and simple coin games (and Homework 1)<a class="anchor-link" href="#Expectations-and-simple-coin-games-(and-Homework-1)">&#182;</a></h3><h4 id="Prof.-Jack-Poulson;-April-4,-2015">Prof. Jack Poulson; April 4, 2015<a class="anchor-link" href="#Prof.-Jack-Poulson;-April-4,-2015">&#182;</a></h4>
+<h2 id="Mathematics-in-the-Real-World">Mathematics in the Real World<a class="anchor-link" href="#Mathematics-in-the-Real-World">&#182;</a></h2><h3 id="Solutions-for-Homework-3">Solutions for Homework 3<a class="anchor-link" href="#Solutions-for-Homework-3">&#182;</a></h3><h4 id="Prof.-Jack-Poulson;-May-21,-2015">Prof. Jack Poulson; May 21, 2015<a class="anchor-link" href="#Prof.-Jack-Poulson;-May-21,-2015">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -186,7 +186,12 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="images/quarter.png" /></p>
+<h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>Given the system of equations
+   $$ \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 2 \\ 3 & 4 & 5 \end{pmatrix} 
+      \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = 
+      \begin{bmatrix} 5 \\ 6 \\ 7 \end{bmatrix}, $$</p>
+<p><strong>a)</strong> Perform Gaussian Elimination to put the system of equations into upper-triangular form.</p>
+<p><strong>b)</strong> Perform back substitution to find $x_3$, $x_2$, and then $x_1$.</p>
 
 </div>
 </div>
@@ -196,17 +201,27 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Review-of-&quot;norms&quot;-and-the-resulting-&quot;best-approximations&quot;">Review of "norms" and the resulting "best approximations"<a class="anchor-link" href="#Review-of-&quot;norms&quot;-and-the-resulting-&quot;best-approximations&quot;">&#182;</a></h3><p>In the last set of notes, we discussed three different ways of measuring the size of a list of numbers and called each of these different types of measurements a <strong>norm</strong>. We also introduced the terminology <strong>vector</strong> as an alternative to "list of numbers", as it is the name used in both physics courses and by mathematicians (though, in the former case it is accompanied with a physical interpretation, and in the latter case a precise definition).</p>
-<p>Given a vector $x$ containing $n$ entries, we discussed the three norms</p>
+<h5 id="Part-(a)">Part (a)<a class="anchor-link" href="#Part-(a)">&#182;</a></h5><p>Since our goal is to "zero" the entries of the matrix below the main diagonal, we start by subtracting $2/1$ times the first equation from the second equation, and $3/1$ times the first equation from the third equation to find:
 $$
-\begin{eqnarray*}
- \| x \|_1 &=& \sum_{i=1}^n |x(i)|, \\
- \| x \|_2 &=& \sqrt{\sum_{i=1}^n |x(i)|^2},\;\text{and} \\
- \| x \|_\infty &=& \max_{i=1}^n |x(i)|,
-\end{eqnarray*}
-$$<p>which we respectively called the <strong>one-norm</strong>, <strong>two-norm</strong>, and either <strong>max-norm</strong> or <strong>infinity-norm</strong>, with each being possible to view as a special case of the <strong>p-norm</strong>,</p>
-$$ \| x \|_p = \left( \sum_i |x(i)|^p \right)^{1/p}. $$<p>We then showed that, if we want to define the closest single number, say $\alpha$, to the entire vector $x$, then we might have three different choices of $\alpha$ depending upon whether we want to make the approximation error, $x - \alpha$, as small as possible in either the one-norm, two-norm or infinity-norm. We then argued that minimizing the <strong>one-norm</strong> of the error leads to setting $\alpha$ to the <strong>median</strong> of $x$, minimizing the <strong>two-norm</strong> leads to setting $\alpha$ to the <strong>mean</strong> of $x$, and minimizing the <strong>max-norm</strong> leads to setting $\alpha$ to the <strong>center</strong> of $x$ (and we also discussed that approximations which minimize the number of nonzero entries in the error lead to the <strong>modes</strong>).</p>
-<p>For the rest of these notes, we will follow the usual convention of minimizing error in the <strong>two-norm</strong>, which leads to the conclusion that the "best" approximation of a list of numbers is its <strong>mean</strong>. We will now discuss how this mean takes on a useful interpretation when deciding what one should expect the result of a random event to be.</p>
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & -4 \\ 0 & -2 & -4 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 5 \\ -4 \\ -8 \end{bmatrix}.
+$$
+The remaining entry can be zeroed by subtracting $-2/1$ times the second row from the third row and finding
+$$
+\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & -4 \\ 0 & 0 & -12 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 5 \\ -4 \\ -16 \end{bmatrix}.
+$$</p>
+<h5 id="Part(b)">Part(b)<a class="anchor-link" href="#Part(b)">&#182;</a></h5><p>The first step of backwards substitution immediately tells us that
+$$ x_3 = \frac{4}{3}, $$
+and the second then solves for $x_2$ in 
+$$ x_2 - 4 x_3 = -4, $$
+and finds 
+$$ x_2 = -4 + 4 x_3 = -4 + \frac{16}{3} = \frac{4}{3}. $$
+Lastly, we then solve
+$$ x_1 + 2 x_2 + 3 x_3 = 5 $$
+to find
+$$ x_1 = 5 - 2 x_2 - 3 x_3 = 5 - \frac{8}{3} - \frac{12}{3} = -\frac{5}{3}. $$</p>
+<p>We can plug these values into the equation
+  $$ r = b - A x $$
+to find that the <strong>residual</strong>, $r$, is zero, which shows that the chosen parameters properly predict the data.</p>
 
 </div>
 </div>
@@ -216,9 +231,10 @@ $$ \| x \|_p = \left( \sum_i |x(i)|^p \right)^{1/p}. $$<p>We then showed that, i
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-a-single-fair-coin-toss">Betting on a single fair coin-toss<a class="anchor-link" href="#Betting-on-a-single-fair-coin-toss">&#182;</a></h3><p>In an idealized environment, if someone flips a quarter, one would expect that it would be equally likely for the coin to land on heads as on tails (<a href="https://www.youtube.com/watch?v=xit5LDwJVck">though there are some good counter-examples!</a>). But suppose that someone offered you the chance to play a game where, if the coin lands on heads, you get one dollar, but if the coin lands on tails, you get nothing. What amount of money would you expect to win on average?</p>
-<p>Since there are two equally-likely outcomes, \$1 (heads) and \$0 (tails), the <em>average</em>, or <em>mean</em> outcome would be</p>
-$$ \frac{\$1 + \$0}{2} = \$0.50. $$<p>Thus, we should expect, on average, to win fifty cents each time we play. But in the last lecture we saw that the best single-number estimate in the <em>two-norm</em> of a vector is its mean, and so we can also interpret the average outcome of our coin-flip game as the best (with respect to the two-norm) single-number estimate for the vector $(1,0)$.</p>
+<h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>Given the matrix 
+$$ A = \begin{pmatrix} 1 & 7 & 8 & 3 \\ 2 & 4 & 2 & 1 \end{pmatrix}, $$</p>
+<p><strong>a)</strong> Write down the transpose of $A$ (which is denoted $A^T$).</p>
+<p><strong>b)</strong> Compute $C = A^T A$.</p>
 
 </div>
 </div>
@@ -228,9 +244,10 @@ $$ \frac{\$1 + \$0}{2} = \$0.50. $$<p>Thus, we should expect, on average, to win
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-a-single-weighted-coin-toss">Betting on a single weighted coin-toss<a class="anchor-link" href="#Betting-on-a-single-weighted-coin-toss">&#182;</a></h3><p>But now suppose that someone had somehow modified a quarter so that it was now twice as likely to land on tails as on heads (with apologies to <a href="http://www.stat.columbia.edu/~gelman/research/published/diceRev2.pdf">Gelman and Nolan</a>). Clearly the average-case winnings of the single coin-flip game will be different now, as we only expect to win $\$1$ one-third of the time, and to win nothing the other two-thirds of the time. We could thus represent the situation by forming a list of three equally-likely outcomes, $(1,0,0)$, where each entry represents the outcome one-third of the time. Thus, on average, we would win</p>
-$$ \frac{\$1 + \$0 + \$0}{3} \approx \$0.33. $$<p>We can also interpret the <strong>mean</strong> as being the value of $\alpha$ which makes 
-$(1-\alpha,0-\alpha,0-\alpha)$ as small as possible when measured in the <strong>two-norm</strong>, the <strong>median</strong>, $\$0$, as the minimizer in the **one-norm**, and the **center**, $\frac{\$1+\$0}{2} = \$0.50$, as the minimizer in the <strong>max-norm</strong>. In the case of the fair coin, each of these values was $\$0.50$.</p>
+<h5 id="Part-(a)">Part (a)<a class="anchor-link" href="#Part-(a)">&#182;</a></h5><p>The transpose is
+$$ \begin{pmatrix} 1 & 2 \\ 7 & 4 \\ 8 & 2 \\ 3 & 1 \end{pmatrix}. $$</p>
+<h5 id="Part-(b)">Part (b)<a class="anchor-link" href="#Part-(b)">&#182;</a></h5><p>The product is 
+$$ \begin{pmatrix} 1 & 2 \\ 7 & 4 \\ 8 & 2 \\ 3 & 1 \end{pmatrix} \begin{pmatrix} 1 & 7 & 8 & 3 \\ 2 & 4 & 2 & 1 \end{pmatrix} = \begin{pmatrix} 5 & 15 & 12 & 5 \\ 15 & 65 & 64 & 25 \\ 12 & 64 & 68 & 26 \\ 5 & 25 & 26 & 10 \end{pmatrix}. $$</p>
 
 </div>
 </div>
@@ -240,25 +257,9 @@ $(1-\alpha,0-\alpha,0-\alpha)$ as small as possible when measured in the <strong
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-the-&quot;keep-flipping-until-tails&quot;-game">Betting on the "keep flipping until tails" game<a class="anchor-link" href="#Betting-on-the-&quot;keep-flipping-until-tails&quot;-game">&#182;</a></h3><p>Let us now go back to assuming a fair coin and make the game a bit more interesting. Rather than only analyzing a single coin-toss, let's change the rules of the game so that a coin is repeatedly flipped until the first tails shows up, and the player wins $\$1$ for each heads that was flipped before-hand. For example, if the game proceeded as: heads, heads, heads, tails, then the player would have received $\$1$ for each of the three heads for a total of $\$3$.</p>
-<p>Since there are an infinite number of different possibilities for the outcome of the game (for example, it is possible, though highly unlikely, for heads to be flipped a billion times in a row), we can quickly determine the average-case result by analyzing the average up to different total numbers of coin-flips.</p>
-<p>For example, if we only investigated up to a single coin-flip, we would be back at the original game, where the two possible outcomes are the equally-likely heads ($\$1$) and tails ($\$0$), which lead to the average winnings of $\$0.50$ when counting up to one round of coin-flips. But if we investigate up to two coin-flips, then we could label the four equally-likely outcomes as:</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$2</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>so that the average winnings (counting up to two coin-flips) would be $\$0.75$. But if we counted up to three coin-flips, we could label the (equally-likely) outcomes as</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td><td>H </td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Flip 3</strong></td><td>H</td><td> </td><td> </td><td> </td><td>T </td><td> </td><td> </td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$3</td><td>\$0</td><td>\$1</td><td>\$0</td><td>\$2</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>which would average to be half-way between $\$0.87$ and $\$0.88$.</p>
-<p>At this point, it might be clear that taking into account each further round of coin-flips takes the average half-way further towards the average winnings being $\$1$, as the pattern has been $50$ cents, $75$ cents, and then $87.5$ cents. We can thus say that the expected winnings of the full game are $\$1$.</p>
+<h4 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h4><p>Given the measurements $(5,4,5,5,10,7)$, respectively occuring at times $(0,1,2,3,4,5)$:</p>
+<p><strong>a)</strong> Compute the "best" (with respect to the two-norm) <strong>linear</strong> fit of the dataset.</p>
+<p><strong>b)</strong> Compute the "best" (with respect to the two-norm) <strong>quadratic</strong> fit of the dataset.</p>
 
 </div>
 </div>
@@ -268,69 +269,192 @@ $(1-\alpha,0-\alpha,0-\alpha)$ as small as possible when measured in the <strong
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-a-doubling-version-of-the-&quot;keep-flipping-until-tails&quot;-game">Betting on a doubling version of the "keep flipping until tails" game<a class="anchor-link" href="#Betting-on-a-doubling-version-of-the-&quot;keep-flipping-until-tails&quot;-game">&#182;</a></h3><p>If we make the previous game slightly more complicated by <strong>doubling</strong> the payoff of each successive heads, then we have arrived at a game very similar to the <a href="http://en.wikipedia.org/wiki/St._Petersburg_paradox">St. Petersburg Paradox</a>. For example, if the game has proceeded as: heads, heads, heads, tails, then the player would have received $\$1$ for the first heads, $\$2$ for the second heads, and $\$4$ for the third heads, for a total of $\$1+\$2+\$4=\$7$.</p>
-<p>Let us adopt the same line of attack as the last game and investigate the average winnings after counting all of the outcomes from fixed numbers of rounds of coin-flips. Just as for the last game, if we only count the first round, the equally-likely outcomes are \$1 (heads) and \$0 (tails), and so the average winnings (up to come coin-flip) are \$0.50.</p>
-<p>The outcomes of the coin-flips are the same as for the previous games, but the payouts can be quite different. Counting the scenarios up to two coin-flips, we find</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$3</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
+<h5 id="Part-(a)">Part (a)<a class="anchor-link" href="#Part-(a)">&#182;</a></h5><p>Use 
+$$ A = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \\ 1 & 5 \end{pmatrix}, \quad b = \begin{bmatrix} 5 \\ 4 \\ 5 \\ 5 \\ 10 \\ 7 \end{bmatrix}$$
+to set up the normal equations
+$$ A^T A x = A^T b, $$
+or, in our case,
+$$ \begin{pmatrix} 6 & 15 \\ 15 & 55 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 36 \\ 104 \end{bmatrix}, $$
+which has a solution (e.g., through Gaussian Elimination) of 
+$$ x_1 = 4,\quad x_2 = \frac{4}{5}. $$
+The implied linear fit is thus
+$$ \ell(t) = 4 + \frac{4}{5} t. $$</p>
+<h5 id="Part-(b)">Part (b)<a class="anchor-link" href="#Part-(b)">&#182;</a></h5>$$ A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 1 \\ 1 & 2 & 4 \\ 1 & 3 & 9 \\ 1 & 4 & 16 \\ 1 & 5 & 25 \end{pmatrix}, \quad \begin{bmatrix} 5 \\ 4 \\ 5 \\ 5 \\ 10 \\ 7 \end{bmatrix}$$<p>to set up the normal equations
+$$ A^T A x = A^T b, $$
+which, in our case, is
+$$ \begin{pmatrix} 6 & 15 & 55 \\ 15 & 55 & 225 \\ 55 & 225 & 979 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 36 \\ 104 \\ 404 \end{bmatrix}, $$
+which has the solution (e.g., through Gaussian Elimination)
+$$ x_1 \approx 4.35714, \quad x_2 \approx 0.26429, \quad x_3 \approx 0.10714. $$
+The implied quadratic fit is thus
+$$ q(t) \approx 4.35714 + 0.26429 t + 0.10714 t^2, $$
+which is qualitatively different than our linear fit.</p>
 
-<p>which implies that the average winnings are \$1. Investigating up to three coin-flips, we find</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td><td>H </td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Flip 3</strong></td><td>H</td><td> </td><td> </td><td> </td><td>T </td><td> </td><td> </td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$7</td><td>\$0</td><td>\$1</td><td>\$0</td><td>\$3</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>which shows that the average winnings were \$1.50. The pattern turns out to be that the expected winnings from the first $k$ coin-flips are $k * \$0.50$, and so the expected winnings from the full game are infinite! The fact that this analysis would suggest that one should pay any price to be allowed to play this game is the reason for the "paradox" in the <a href="http://en.wikipedia.org/wiki/St._Petersburg_paradox">St. Petersburg Paradox</a>.</p>
-
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Homework-1-(Due-at-the-beginning-of-class-on-Friday,-April-10)">Homework 1 (Due at the beginning of class on Friday, April 10)<a class="anchor-link" href="#Homework-1-(Due-at-the-beginning-of-class-on-Friday,-April-10)">&#182;</a></h3><h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>As a warmup, please compute the sum from one to the number of letters in your first and last name. For example, "Jack Poulson" has 11 letters and so I would compute the sum from one to eleven, 1+2+3+...+11, which can be more concisely written as $ \sum_{i=1}^{11} i$, with the upper-case Greek letter "$\Sigma$" often being referred to as the "summation sign".</p>
-<p>Your answer should take the form of:</p>
-<ol>
-<li><p>Your first and last name</p>
-</li>
-<li><p>The summation formula and the final result.</p>
-</li>
-</ol>
-<h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>The first set of notes covered three different ways of measuring the size of a list of numbers (or <em>vector</em>), which we will now exercise. To do so, go to <code>rottentomatoes.com</code>, pick two sets of five movies not mentioned on the front page, and record their "freshness" percentages (making sure to pick movies with varying ratings). For example, if I picked one of my two sets from the front page, I might record <code>("Furious 7",81)</code>, <code>("It Follows",95)</code>, <code>("Woman in Gold",49)</code>, <code>("Effie Gray",43)</code>, and <code>("Cut Bank",33)</code>. To make the following more interesting, you may want to have each of the two sets of movies from a different category (for example, you could pick five of your favorite comedies and/or five movies starring Nicholas Cage).</p>
-<p>Report:</p>
-<ol>
-<li><p>The two sets of five movie titles and ratings.</p>
-</li>
-<li><p>The one-norms of the two vectors of five scores (showing your work).</p>
-</li>
-<li><p>The two-norm of the two vectors of five scores (showing your work).</p>
-</li>
-<li><p>The max-norms of the two vectors of five scores.</p>
-</li>
-</ol>
-<h4 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h4><p>You should now compute the three different <strong>best estimates</strong> for each of the two sets of five movie scores, which can be interpreted as different types of averages of the scores. Since I had picked the current list of opening movies, each estimate would give a different opinion on how good this week's new movies are.
-Each of the following answers was shown to simplify to either the <em>mean</em>, <em>median</em>, or <em>center</em> of the vectors of scores, but I will leave it up to you to recall/find which was which.</p>
-<p>Report:</p>
-<ol>
-<li><p>Their best one-norm estimate (showing your work).</p>
-</li>
-<li><p>Their best two-norm estimate (showing your work).</p>
-</li>
-<li><p>Their best max-norm estimate (showing your work).</p>
-</li>
-</ol>
-<h4 id="Problem-4">Problem 4<a class="anchor-link" href="#Problem-4">&#182;</a></h4><p>Suppose that the fair coin from the "keep flipping until tails" game was replaced with a weighted coin which would land on heads only one-third of the time (and on tails the other two-thirds). What would be the expected winnings from the game?</p>
-<h4 id="Problem-5-(Bonus)">Problem 5 (Bonus)<a class="anchor-link" href="#Problem-5-(Bonus)">&#182;</a></h4><p>If we used the same weighted coin (1/3 heads and 2/3 tails) within the version of the "keep flipping until tails" game where the payoff from each heads doubles every time, what would our expected winnings be?</p>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">7</span><span class="p">];</span>
+<span class="n">ALin</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+<span class="n">AQuad</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">16</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">]]</span>
+<span class="n">xLin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mf">0.8</span><span class="p">]</span>
+<span class="n">xQuad</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.35714</span><span class="p">,</span><span class="mf">0.26429</span><span class="p">,</span><span class="mf">0.10714</span><span class="p">]</span>
+<span class="n">yLin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ALin</span><span class="p">,</span><span class="n">xLin</span><span class="p">)</span>
+<span class="n">yQuad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">AQuad</span><span class="p">,</span><span class="n">xQuad</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="s">&#39;ks&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">yLin</span><span class="p">,</span><span class="s">&#39;bs--&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">yQuad</span><span class="p">,</span><span class="s">&#39;rs--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+</pre></div>
 
 </div>
 </div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3, 11)</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Notebook02-ExpectationsAndSimpleCoinGames</title>
+<title>Notebook05-Regression</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,7 +177,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Mathematics-in-the-Real-World">Mathematics in the Real World<a class="anchor-link" href="#Mathematics-in-the-Real-World">&#182;</a></h2><h3 id="Expectations-and-simple-coin-games-(and-Homework-1)">Expectations and simple coin games (and Homework 1)<a class="anchor-link" href="#Expectations-and-simple-coin-games-(and-Homework-1)">&#182;</a></h3><h4 id="Prof.-Jack-Poulson;-April-4,-2015">Prof. Jack Poulson; April 4, 2015<a class="anchor-link" href="#Prof.-Jack-Poulson;-April-4,-2015">&#182;</a></h4>
+<h2 id="Mathematics-in-the-Real-World">Mathematics in the Real World<a class="anchor-link" href="#Mathematics-in-the-Real-World">&#182;</a></h2><h3 id="Regression">Regression<a class="anchor-link" href="#Regression">&#182;</a></h3><h4 id="Prof.-Jack-Poulson;-May-11,-2015">Prof. Jack Poulson; May 11, 2015<a class="anchor-link" href="#Prof.-Jack-Poulson;-May-11,-2015">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -186,27 +186,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="images/quarter.png" /></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Review-of-&quot;norms&quot;-and-the-resulting-&quot;best-approximations&quot;">Review of "norms" and the resulting "best approximations"<a class="anchor-link" href="#Review-of-&quot;norms&quot;-and-the-resulting-&quot;best-approximations&quot;">&#182;</a></h3><p>In the last set of notes, we discussed three different ways of measuring the size of a list of numbers and called each of these different types of measurements a <strong>norm</strong>. We also introduced the terminology <strong>vector</strong> as an alternative to "list of numbers", as it is the name used in both physics courses and by mathematicians (though, in the former case it is accompanied with a physical interpretation, and in the latter case a precise definition).</p>
-<p>Given a vector $x$ containing $n$ entries, we discussed the three norms</p>
-$$
-\begin{eqnarray*}
- \| x \|_1 &=& \sum_{i=1}^n |x(i)|, \\
- \| x \|_2 &=& \sqrt{\sum_{i=1}^n |x(i)|^2},\;\text{and} \\
- \| x \|_\infty &=& \max_{i=1}^n |x(i)|,
-\end{eqnarray*}
-$$<p>which we respectively called the <strong>one-norm</strong>, <strong>two-norm</strong>, and either <strong>max-norm</strong> or <strong>infinity-norm</strong>, with each being possible to view as a special case of the <strong>p-norm</strong>,</p>
-$$ \| x \|_p = \left( \sum_i |x(i)|^p \right)^{1/p}. $$<p>We then showed that, if we want to define the closest single number, say $\alpha$, to the entire vector $x$, then we might have three different choices of $\alpha$ depending upon whether we want to make the approximation error, $x - \alpha$, as small as possible in either the one-norm, two-norm or infinity-norm. We then argued that minimizing the <strong>one-norm</strong> of the error leads to setting $\alpha$ to the <strong>median</strong> of $x$, minimizing the <strong>two-norm</strong> leads to setting $\alpha$ to the <strong>mean</strong> of $x$, and minimizing the <strong>max-norm</strong> leads to setting $\alpha$ to the <strong>center</strong> of $x$ (and we also discussed that approximations which minimize the number of nonzero entries in the error lead to the <strong>modes</strong>).</p>
-<p>For the rest of these notes, we will follow the usual convention of minimizing error in the <strong>two-norm</strong>, which leads to the conclusion that the "best" approximation of a list of numbers is its <strong>mean</strong>. We will now discuss how this mean takes on a useful interpretation when deciding what one should expect the result of a random event to be.</p>
+<p><img src="images/regression.png" /></p>
 
 </div>
 </div>
@@ -216,118 +196,877 @@ $$ \| x \|_p = \left( \sum_i |x(i)|^p \right)^{1/p}. $$<p>We then showed that, i
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-a-single-fair-coin-toss">Betting on a single fair coin-toss<a class="anchor-link" href="#Betting-on-a-single-fair-coin-toss">&#182;</a></h3><p>In an idealized environment, if someone flips a quarter, one would expect that it would be equally likely for the coin to land on heads as on tails (<a href="https://www.youtube.com/watch?v=xit5LDwJVck">though there are some good counter-examples!</a>). But suppose that someone offered you the chance to play a game where, if the coin lands on heads, you get one dollar, but if the coin lands on tails, you get nothing. What amount of money would you expect to win on average?</p>
-<p>Since there are two equally-likely outcomes, \$1 (heads) and \$0 (tails), the <em>average</em>, or <em>mean</em> outcome would be</p>
-$$ \frac{\$1 + \$0}{2} = \$0.50. $$<p>Thus, we should expect, on average, to win fifty cents each time we play. But in the last lecture we saw that the best single-number estimate in the <em>two-norm</em> of a vector is its mean, and so we can also interpret the average outcome of our coin-flip game as the best (with respect to the two-norm) single-number estimate for the vector $(1,0)$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-a-single-weighted-coin-toss">Betting on a single weighted coin-toss<a class="anchor-link" href="#Betting-on-a-single-weighted-coin-toss">&#182;</a></h3><p>But now suppose that someone had somehow modified a quarter so that it was now twice as likely to land on tails as on heads (with apologies to <a href="http://www.stat.columbia.edu/~gelman/research/published/diceRev2.pdf">Gelman and Nolan</a>). Clearly the average-case winnings of the single coin-flip game will be different now, as we only expect to win $\$1$ one-third of the time, and to win nothing the other two-thirds of the time. We could thus represent the situation by forming a list of three equally-likely outcomes, $(1,0,0)$, where each entry represents the outcome one-third of the time. Thus, on average, we would win</p>
-$$ \frac{\$1 + \$0 + \$0}{3} \approx \$0.33. $$<p>We can also interpret the <strong>mean</strong> as being the value of $\alpha$ which makes 
-$(1-\alpha,0-\alpha,0-\alpha)$ as small as possible when measured in the <strong>two-norm</strong>, the <strong>median</strong>, $\$0$, as the minimizer in the **one-norm**, and the **center**, $\frac{\$1+\$0}{2} = \$0.50$, as the minimizer in the <strong>max-norm</strong>. In the case of the fair coin, each of these values was $\$0.50$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-the-&quot;keep-flipping-until-tails&quot;-game">Betting on the "keep flipping until tails" game<a class="anchor-link" href="#Betting-on-the-&quot;keep-flipping-until-tails&quot;-game">&#182;</a></h3><p>Let us now go back to assuming a fair coin and make the game a bit more interesting. Rather than only analyzing a single coin-toss, let's change the rules of the game so that a coin is repeatedly flipped until the first tails shows up, and the player wins $\$1$ for each heads that was flipped before-hand. For example, if the game proceeded as: heads, heads, heads, tails, then the player would have received $\$1$ for each of the three heads for a total of $\$3$.</p>
-<p>Since there are an infinite number of different possibilities for the outcome of the game (for example, it is possible, though highly unlikely, for heads to be flipped a billion times in a row), we can quickly determine the average-case result by analyzing the average up to different total numbers of coin-flips.</p>
-<p>For example, if we only investigated up to a single coin-flip, we would be back at the original game, where the two possible outcomes are the equally-likely heads ($\$1$) and tails ($\$0$), which lead to the average winnings of $\$0.50$ when counting up to one round of coin-flips. But if we investigate up to two coin-flips, then we could label the four equally-likely outcomes as:</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$2</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>so that the average winnings (counting up to two coin-flips) would be $\$0.75$. But if we counted up to three coin-flips, we could label the (equally-likely) outcomes as</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td><td>H </td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Flip 3</strong></td><td>H</td><td> </td><td> </td><td> </td><td>T </td><td> </td><td> </td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$3</td><td>\$0</td><td>\$1</td><td>\$0</td><td>\$2</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>which would average to be half-way between $\$0.87$ and $\$0.88$.</p>
-<p>At this point, it might be clear that taking into account each further round of coin-flips takes the average half-way further towards the average winnings being $\$1$, as the pattern has been $50$ cents, $75$ cents, and then $87.5$ cents. We can thus say that the expected winnings of the full game are $\$1$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Betting-on-a-doubling-version-of-the-&quot;keep-flipping-until-tails&quot;-game">Betting on a doubling version of the "keep flipping until tails" game<a class="anchor-link" href="#Betting-on-a-doubling-version-of-the-&quot;keep-flipping-until-tails&quot;-game">&#182;</a></h3><p>If we make the previous game slightly more complicated by <strong>doubling</strong> the payoff of each successive heads, then we have arrived at a game very similar to the <a href="http://en.wikipedia.org/wiki/St._Petersburg_paradox">St. Petersburg Paradox</a>. For example, if the game has proceeded as: heads, heads, heads, tails, then the player would have received $\$1$ for the first heads, $\$2$ for the second heads, and $\$4$ for the third heads, for a total of $\$1+\$2+\$4=\$7$.</p>
-<p>Let us adopt the same line of attack as the last game and investigate the average winnings after counting all of the outcomes from fixed numbers of rounds of coin-flips. Just as for the last game, if we only count the first round, the equally-likely outcomes are \$1 (heads) and \$0 (tails), and so the average winnings (up to come coin-flip) are \$0.50.</p>
-<p>The outcomes of the coin-flips are the same as for the previous games, but the payouts can be quite different. Counting the scenarios up to two coin-flips, we find</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$3</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>which implies that the average winnings are \$1. Investigating up to three coin-flips, we find</p>
-<table>
-<tr><td><strong>Flip 1</strong></td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td><td>H</td><td>T</td></tr>
-<tr><td><strong>Flip 2</strong></td><td>H</td><td> </td><td>T</td><td> </td><td>H </td><td> </td><td>T</td><td> </td></tr>
-<tr><td><strong>Flip 3</strong></td><td>H</td><td> </td><td> </td><td> </td><td>T </td><td> </td><td> </td><td> </td></tr>
-<tr><td><strong>Winnings</strong></td><td>\$7</td><td>\$0</td><td>\$1</td><td>\$0</td><td>\$3</td><td>\$0</td><td>\$1</td><td>\$0</td></tr>
-</table>
-
-<p>which shows that the average winnings were \$1.50. The pattern turns out to be that the expected winnings from the first $k$ coin-flips are $k * \$0.50$, and so the expected winnings from the full game are infinite! The fact that this analysis would suggest that one should pay any price to be allowed to play this game is the reason for the "paradox" in the <a href="http://en.wikipedia.org/wiki/St._Petersburg_paradox">St. Petersburg Paradox</a>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Homework-1-(Due-at-the-beginning-of-class-on-Friday,-April-10)">Homework 1 (Due at the beginning of class on Friday, April 10)<a class="anchor-link" href="#Homework-1-(Due-at-the-beginning-of-class-on-Friday,-April-10)">&#182;</a></h3><h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>As a warmup, please compute the sum from one to the number of letters in your first and last name. For example, "Jack Poulson" has 11 letters and so I would compute the sum from one to eleven, 1+2+3+...+11, which can be more concisely written as $ \sum_{i=1}^{11} i$, with the upper-case Greek letter "$\Sigma$" often being referred to as the "summation sign".</p>
-<p>Your answer should take the form of:</p>
+<h2 id="Regression">Regression<a class="anchor-link" href="#Regression">&#182;</a></h2><p>While we have previously discussed how to approximate a dataset with a single point (e.g., the <em>median</em>, <em>mean</em>, or <em>mode</em>), performing a more sophisticated approximation, such as fitting a line or quadratic to the data, requires that we increase our level of mathematical sophistication substantially. In particular, we will need an elementary understanding of <strong>linear algebra</strong>, which is the area of study focused on linear transformations of vectors.</p>
+<h3 id="Linear-transformations">Linear transformations<a class="anchor-link" href="#Linear-transformations">&#182;</a></h3><p>Before we can describe what is meant by a linear transformation, it is useful for us to first describe the notation used for basic manipulations of vectors, such as scaling every entry by the same value, and adding two vectors together.</p>
+<h4 id="Scaling-vectors">Scaling vectors<a class="anchor-link" href="#Scaling-vectors">&#182;</a></h4><p>Perhaps the most basic operation that we can perform on a vector is to rescale it, such as by multiplying every entry by two. In this case, we might say that we multiplied the vector by the <em>scalar</em> two. More generally, for any number $\lambda$, we might denote scaling a vector $x$ by $\lambda$ as
+   $$ \lambda x = \lambda \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} = \begin{bmatrix} \lambda x_1 \\ \lambda x_2 \\ \vdots \\ \lambda x_n \end{bmatrix}. $$</p>
+<p>For example, 
+  $$ 5 \begin{bmatrix} 2 \\ 4 \\ 6 \\ 8 \end{bmatrix} = \begin{bmatrix} 10 \\ 20 \\ 30 \\ 40 \end{bmatrix}. $$</p>
+<h4 id="Adding-vectors">Adding vectors<a class="anchor-link" href="#Adding-vectors">&#182;</a></h4><p>An even more natural operation, which you would likely have seen in a high-school physics class, is the <em>addition</em> of two vectors:
+$$ x + y = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} + \begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix}. $$
+For example, 
+  $$ \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} + \begin{bmatrix} 2 \\ 4 \\ 6 \\ 8 \end{bmatrix} = \begin{bmatrix} 3 \\ 6 \\ 9 \\ 12 \end{bmatrix}. $$</p>
+<h4 id="Definition-of-a-linear-function">Definition of a linear function<a class="anchor-link" href="#Definition-of-a-linear-function">&#182;</a></h4><p>Now that we have defined how to scale and add vectors, we are ready to list the two requirements that a transformation $f$, which takes in a vector as an input and gives back another vector as an output, must meet in order for it to be called <strong>linear</strong>:</p>
 <ol>
-<li><p>Your first and last name</p>
-</li>
-<li><p>The summation formula and the final result.</p>
-</li>
+<li>For any <em>scalar</em> $\lambda$ and input vector $x$, scaling the input and then applying the transformation is the same as applying the transformation and then scaling the output:
+  $$ f(\lambda x) = \lambda f(x),\text{ and}$$</li>
+<li>For any two input vectors $x$ and $y$, transforming their sum is the same as summing their transforms:
+$$ f(x+y) = f(x) + f(y). $$</li>
 </ol>
-<h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>The first set of notes covered three different ways of measuring the size of a list of numbers (or <em>vector</em>), which we will now exercise. To do so, go to <code>rottentomatoes.com</code>, pick two sets of five movies not mentioned on the front page, and record their "freshness" percentages (making sure to pick movies with varying ratings). For example, if I picked one of my two sets from the front page, I might record <code>("Furious 7",81)</code>, <code>("It Follows",95)</code>, <code>("Woman in Gold",49)</code>, <code>("Effie Gray",43)</code>, and <code>("Cut Bank",33)</code>. To make the following more interesting, you may want to have each of the two sets of movies from a different category (for example, you could pick five of your favorite comedies and/or five movies starring Nicholas Cage).</p>
-<p>Report:</p>
+<p>For example, suppose a function $f$ transforms each entry in a vector of length two into another vector of length two, but with each entry squared:
+$$ f(x) = f\left(\begin{bmatrix}x_1 \\ x_2 \end{bmatrix}\right) = \begin{bmatrix} x_1^2 \\ x_2^2 \end{bmatrix}. $$
+Then, picking a real number $\lambda$, we would see that
+  $$ f(\lambda x) = f\left(\begin{bmatrix} \lambda x_1 \\ \lambda x_2 \end{bmatrix}\right) = \begin{bmatrix} \lambda^2 x_1^2 \\ \lambda^2 x_2^2 \end{bmatrix} = \lambda^2 f(x), $$
+which therefore does not satisfy property (1) that $f(\lambda x) = \lambda f(x)$.</p>
+<p>On the other hand, consider the function $f$ such that 
+  $$ f(x) = f\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right) = \begin{bmatrix} 2 x_1 + 3 x_2 \\ 4 x_1 + 5 x_2 \end{bmatrix}. $$
+We can then easily see that $f$ satisfies both property (1) and property (2) for linearity by computing
+  $$ f(\lambda x) = f\left(\begin{bmatrix} \lambda x_1 \\ \lambda x_2 \end{bmatrix}\right) = \begin{bmatrix} 2 (\lambda x_1) + 3 (\lambda x_2) \\ 4 (\lambda x_1) + 5 (\lambda x_2) \end{bmatrix} = \lambda \begin{bmatrix} 2 x_1 + 3 x_2 \\ 4 x_1 + 5 x_2 \end{bmatrix} = \lambda f(x), $$
+which shows property (1), and
+  $$ f(x + y) = f\left(\begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \end{bmatrix}\right) = \begin{bmatrix} 2 (x_1 + y_1) + 3 (x_2 + y_2) \\ 4 (x_1 + y_1) + 5 (x_2 + y_2) \end{bmatrix} = \begin{bmatrix} 2 x_1 + 3 x_2 \\ 4 x_1 + 5 x_2 \end{bmatrix} + \begin{bmatrix} 2 y_1 + 3 y_2 \\ 4 y_1 + 5 y_2 \end{bmatrix} = f(x) + f(y), $$
+which shows property (2).</p>
+<h4 id="Representing-linear-transformations-using-matrices">Representing linear transformations using matrices<a class="anchor-link" href="#Representing-linear-transformations-using-matrices">&#182;</a></h4><p>It is in fact the case that <strong>all</strong> linear transformations of vectors take forms which are very similar to that from our last example. In particular, each entry of the output of $f(x)$ must be a weighted sum of the entries of the input. For this reason, it is common to re-express linear transformations of vectors using a table known as a <strong>matrix</strong>. We thus might rewrite the function that we just found to be linear,
+  $$ f\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right) = \begin{bmatrix} 2 x_1 + 3 x_2 \\ 4 x_1 + 5 x_2 \end{bmatrix}, $$
+using the <strong>matrix notation</strong>
+  $$ f\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right) = \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}, $$
+where we have represented the linear transformation $f$ as a matrix, say $F = \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix}$.</p>
+<p>Notice that nothing about the concept of linearity required that the input vector be of the same size as the output vector, and so we could equally-well define the linear transformation
+  $$ f\left(\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right) = \begin{bmatrix} x_1 + x_2 \\ x_1 + 2 x_2 \\ x_1 + 3 x_2 \\ x_1 + 4 x_2 \end{bmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}. $$</p>
+<p>Furthermore, we can formalize the rule for how to compute the $i$'th entry of the result of applying an $m \times n$ matrix (that is, a matrix with $m$ rows and $n$ columns) via the rule
+  $$ \left(A x\right)_i = \sum_{j=1}^n A(i,j) x(j), $$
+where $A(i,j)$ refers to the entry of $A$ occuring in the $i$'th row (counting from the top) and $j$'th column (counting rightward). We can then see that the formula specifies that the $i$'th entry of the result of $A x$ involves summing the $i$'th row of $A$ with the entire input vector, $x$.</p>
+<p>Lastly, we will later make use of the concept of a <strong>transpose</strong> of a matrix $A$, denoted as $A^T$, which has its entry in position $(i,j)$ equal to the entry in position $(j,i)$ of $A$,
+or
+  $$ A^T(i,j) = A(j,i). $$
+As an example, if
+  $$ A = \begin{pmatrix} 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}, $$
+then the transpose of $A$ is
+  $$ A^T = \begin{pmatrix} 4 & 7 \\ 5 & 8 \\ 6 & 9 \end{pmatrix}. $$</p>
+<h3 id="Fitting-a-line">Fitting a line<a class="anchor-link" href="#Fitting-a-line">&#182;</a></h3><p>Now suppose that our dataset is a set of measurements, say the temperature of a kettle of water over time, and we would like to determine the most accurate description of the temperature data as having a fixed starting temperature and a constant increase over time.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">67</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">114</span><span class="p">,</span><span class="mi">118</span><span class="p">];</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">];</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="s">&#39;rs&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (minutes)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (Farenheit)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Measured temperature of a kettle over time&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.text.Text at 0x10902df50&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+QmCC
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Perhaps the most common way to parameterize a line is as
+  $$ \ell(t) = x_1 + x_2 t, $$
+where $x_1$ would typically be called the "y-intercept", and $x_2$ the "slope". A reasonable task would then be to pick values of $x_1$ and $x_2$ so that the predictions are approximately
+equal to the measured data, i.e.,
+  $$ \begin{bmatrix} 67 \\ 85 \\ 103 \\ 114 \\ 118 \end{bmatrix} \approx \begin{bmatrix} \ell(1) \\ \ell(3) \\ \ell(4) \\ \ell(5) \\ \ell(6) \end{bmatrix} = \begin{bmatrix} x_1 + 1 x_2 \\ x_1 + 3 x_2 \\ x_1 + 4 x_2 \\ x_1 + 5 x_2 \\ x_1 + 6 x_2 \end{bmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 3 \\ 1 & 4 \\ 1 & 5 \\ 1 & 6 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}, $$
+since the measurement was $67$F after 1 minute, $85$F after 3 minutes, etc., and we can 
+recognize that the predictions are in fact a linear transformation of the parameters describing the line. We might call the matrix mapping the line parameters to the predictions $A$, the vector of parameters $x$, and the vector of measurements $b$, so that we seek $x$ such that
+  $$ b \approx A x. $$</p>
+<h4 id="The-&quot;normal-equations&quot;">The "normal equations"<a class="anchor-link" href="#The-&quot;normal-equations&quot;">&#182;</a></h4><p>This approximation is typically accomplished through finding the values of $x_1$ and $x_2$ which minimize the two-norm of the deviation between the predictions and the measurements, which is usually phrased as solving the minimization problem:
+  $$ \min_x \left\| \; b - A x \; \right\|_2. $$
+While this equation may be intimidating, basic calculus allows one to realize that solving this minimization problem is, under modest assumptions, equivalent to solving the "normal" system of equations
+  $$ A^T A x = A^T b, $$
+where the left-hand side, $A^T A x$, is the result of applying the transformation $A^T$ to the vector $ A x $, while the right-hand side is simply the transformation of $b$ by the matrix $A^T$.</p>
+<p>Since we have already computed $A x$, we need only apply $A^T$ in order to form $A^T A x$:
+  $$ A^T A x = \begin{pmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 3 & 4 & 5 & 6\end{pmatrix} \begin{bmatrix} x_1 + 1 x_2 \\ x_1 + 3 x_2 \\ x_1 + 4 x_2 \\ x_1 + 5 x_2 \\ x_1 + 6 x_2 \end{bmatrix} = \begin{bmatrix} 5 x_1 + 19 x_2 \\ 19 x_1 + 87 x_2 \end{bmatrix} = \begin{pmatrix} 5 & 19 \\ 19 & 87 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}, $$
+which shows that applying $A$ followed by $A^T$ is the same as applying
+  $$ A^T A = \begin{pmatrix} 5 & 19 \\ 19 & 87 \end{pmatrix}. $$</p>
+<p>Given that
+  $$ A^T b = \begin{pmatrix} 1 & 1 & 1 & 1 & 1 \\ 1 & 3 & 4 & 5 & 6 \end{pmatrix} \begin{bmatrix} 67 \\ 85 \\ 103 \\ 114 \\ 118 \end{bmatrix} = \begin{bmatrix} 487 \\ 2012 \end{bmatrix}, $$
+the "normal equations" for fitting a line to our dataset would involve solving for $x=(x_1,x_2)$ in the expression
+  $$ \begin{pmatrix} 5 & 19 \\ 19 & 87 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 487 \\ 2012 \end{bmatrix}. $$
+Before we explain how to systematically solve such a <strong>system of linear equations</strong>, we will first show a faster means of computing $A^T A$, and, in general, <strong>composing</strong>/<strong>multiplying</strong> two matrices.</p>
+<h4 id="Composing-matrices">Composing matrices<a class="anchor-link" href="#Composing-matrices">&#182;</a></h4><p>While the above example for computing $A^T A$ is meant to be instructive, it is significantly more tedious than necessary due to the fact that we had to keep track of $x_1$ and $x_2$ terms despite the fact that the inputs, $A$ and $A^T$, and the output, $A^T A$, can all be expressed without the need for the $x_1$ and $x_2$ symbols.</p>
+<p>In order to discuss matrix composition, we can consider the more general case of being given an $m \times k$ matrix $F$, an $k \times n$ matrix $G$, and wanting to form an $m \times n$ matrix $C$ which, for any input vector for $G$ (which must be of length $n$), satisfies
+  $$ C x = F G x. $$
+The general rule for forming the entry of $C$ in the $i$'th row and $j$'th column, is
+$$ C(i,j) = \sum_{r=1}^k F(i,r), G(r,j), $$ 
+which corresponds to the coefficient for the $x_j$ term in the $i$'th row of the result of $F G x$. It is easy to verify that this rule produces the same results as our previous explicit calculation of $A^T A x$ which carried around the individual $x_1$ and $x_2$ terms and then factored them out as a last step.</p>
+<h4 id="Solving-systems-of-equations-via-Gaussian-Elimination">Solving systems of equations via Gaussian Elimination<a class="anchor-link" href="#Solving-systems-of-equations-via-Gaussian-Elimination">&#182;</a></h4><p>In order to appreciate Gaussian Elimination, it is useful to first consider a system of equations in a special form referred to as <strong>upper triangular</strong>. For example, consider the system
+$$ \begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & 5 \\ 0 & 0 & 6 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 7 \\ 8 \\ 9 \end{bmatrix}, $$
+which involves a matrix whose coefficients are all zero below the <strong>main diagonal</strong>, $(1,4,6)$. Since the last row is the equation
+$$ 6 x_3 = 9, $$
+we can immediately determine that $x_3 = \frac{3}{2}$. And, further, since the second equation is
+$$ 4 x_2 + 5 x_3 = 8, $$
+and we have already determined that $x_3 = \frac{3}{2}$, we can deduce that 
+$$ x_2 = \frac{1}{8}.$$
+Likewise, because the first equation is
+$$ x_1 + 2 x_2 + 3 x_3 = 7, $$
+and we already know $x_2$ and $x_3$, we can solve for
+$$ x_1 = 7 - \frac{1}{4} - \frac{9}{2} = \frac{9}{4}. $$
+This process of solving for the last variable in an upper-triangular system of equations and working backwards up to the first variable is referred to as <strong>backwards substitution</strong> and is one of the core tools used within linear algebra. (And, similarly, if the system of equations involved a matrix which had all of its coefficients zero <strong>above</strong> the main diagonal, it would be possible to immediately write down the solution for the first variable and work downwards to the last variable via <strong>forward substitution</strong>.)</p>
+<p>Clearly not all systems of equations involve matrices that are in upper-triangular form, and so the purpose of <strong>Gaussian Elimination</strong> is to manipulate the system of equations into upper-triangular form. So suppose that we have a system of equations
+ $$ \begin{pmatrix} 1 & 2 & 3 \\ 2 & 8 & 5 \\ 3 & 5 & 6 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 7 \\ 8 \\ 9 \end{bmatrix}, $$
+and seek to manipulate it into upper-triangular form. Then our first task should be to eliminate the dependence of the second equation,
+$$ 2 x_1 + 8 x_2 + 5 x_3 = 8, $$
+on $x_1$. To do so, we could solve for $x_1$ in the first equation, giving us
+$$ x_1 = 7 - 2 x_2 - 3 x_3, $$
+and substitute this value of $x_1$ into the second equation to give
+$$ 2 (7 - 2 x_2 - 3 x_3) + 8 x_2 + 5 x_3 = 8, $$
+which simplifies to
+$$ 4 x_2 - x_3 = -6. $$
+If we then replace the second row of our system of equations with this new expression, we end up with
+ $$ \begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & -1 \\ 3 & 5 & 6 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 7 \\ -6 \\ 9 \end{bmatrix}. $$
+This process of "zeroing" the first entry in the second row is actually equivalent to subtracting an appropriate multiple of the first equation into the second equation (in our case, we added the first equation multiplied by $-2$, which is the negative of the entry we would like to zero divided by the corresponding entry from the equation used to zero it). Likewise, to zero out the first coefficient in the third row, we can add the first equation multiplied by $-3$ onto the third equation to arrive at
+ $$ \begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & -1 \\ 0 & -1 & -3 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 7 \\ -6 \\ -12 \end{bmatrix}. $$
+To finish reducing the system to upper-triangular form, all that is left is to zero out the second coefficient of the third equation, which we can accomplish via adding one-fourth of the second equation onto the third, i.e.,
+ $$ \begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & -1 \\ 0 & 0 & -3 \frac{1}{4} \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 7 \\ -6 \\ -13 \frac{1}{2} \end{bmatrix}. $$
+This process of reducing the system of equations to upper-triangular form is called <strong>Gaussian Elimination</strong>, and we can now find the solution via applying backwards substitution to find
+$$ x \approx \begin{bmatrix} -4.5385 \\ -0.4615 \\ 4.1539 \end{bmatrix}. $$</p>
+<h4 id="Putting-it-all-together">Putting it all together<a class="anchor-link" href="#Putting-it-all-together">&#182;</a></h4><p>Given a matrix $A$ and a set of measurements $b$, we can now solve a set of normal equations, say
+$$ A^T A x = A^T b, $$
+via</p>
 <ol>
-<li><p>The two sets of five movie titles and ratings.</p>
-</li>
-<li><p>The one-norms of the two vectors of five scores (showing your work).</p>
-</li>
-<li><p>The two-norm of the two vectors of five scores (showing your work).</p>
-</li>
-<li><p>The max-norms of the two vectors of five scores.</p>
-</li>
+<li>Forming $A^T A$,</li>
+<li>Forming $A^T b$, </li>
+<li>Applying Gaussian Elimination to the system of equations, and </li>
+<li>Performing backwards substitution to finally find $x$.</li>
 </ol>
-<h4 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h4><p>You should now compute the three different <strong>best estimates</strong> for each of the two sets of five movie scores, which can be interpreted as different types of averages of the scores. Since I had picked the current list of opening movies, each estimate would give a different opinion on how good this week's new movies are.
-Each of the following answers was shown to simplify to either the <em>mean</em>, <em>median</em>, or <em>center</em> of the vectors of scores, but I will leave it up to you to recall/find which was which.</p>
-<p>Report:</p>
-<ol>
-<li><p>Their best one-norm estimate (showing your work).</p>
-</li>
-<li><p>Their best two-norm estimate (showing your work).</p>
-</li>
-<li><p>Their best max-norm estimate (showing your work).</p>
-</li>
-</ol>
-<h4 id="Problem-4">Problem 4<a class="anchor-link" href="#Problem-4">&#182;</a></h4><p>Suppose that the fair coin from the "keep flipping until tails" game was replaced with a weighted coin which would land on heads only one-third of the time (and on tails the other two-thirds). What would be the expected winnings from the game?</p>
-<h4 id="Problem-5-(Bonus)">Problem 5 (Bonus)<a class="anchor-link" href="#Problem-5-(Bonus)">&#182;</a></h4><p>If we used the same weighted coin (1/3 heads and 2/3 tails) within the version of the "keep flipping until tails" game where the payoff from each heads doubles every time, what would our expected winnings be?</p>
+<p>Should we execute this sequence of steps for our example of fitting a line to our kettle temperature data, we would form the normal equations
+$$ \begin{pmatrix} 5 & 19 \\ 19 & 87 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} 487 \\ 2012 \end{bmatrix}, $$
+which has solution
+$$ \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \approx \begin{bmatrix} 55.959 \\ 10.905 \end{bmatrix}, $$
+which would produce the prediction
+$$ \ell(t) = 55.959 + 10.905 t, $$
+which implies an initial temperature of $55.959$F and a rate of temperature increase of just under 11 degrees per minute.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">67</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">114</span><span class="p">,</span><span class="mi">118</span><span class="p">];</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">]]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">55.959</span><span class="p">],[</span><span class="mf">10.905</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="s">&#39;rs&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;bs--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (minutes)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (Farenheit)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Linear fit of temperature of a kettle over time&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.text.Text at 0x108f02c10&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Fitting-a-quadratic-equation">Fitting a quadratic equation<a class="anchor-link" href="#Fitting-a-quadratic-equation">&#182;</a></h3><p>Just as we could parameterize a line with two parameters as
+  $$ \ell(t) = x_1 + x_2 t, $$
+we can parameterize a quadratic equation as
+  $$ q(t) = x_1 + x_2 t + x_3 t^2. $$
+Should we try to fit this quadratic equation to our data, we would seek values of $x_1$, $x_2$, and $x_3$ such that
+  $$ \begin{bmatrix} 67 \\ 85 \\ 103 \\ 114 \\ 118 \end{bmatrix} \approx \begin{bmatrix} q(1) \\ q(3) \\ q(4) \\ q(5) \\ q(6) \end{bmatrix} = \begin{bmatrix} x_1 + 1 x_2 + 1 x_3 \\ x_1 + 3 x_2 + 9 x_3 \\ x_1 + 4 x_2 + 16 x_3 \\ x_1 + 5 x_2 + 25 x_3 \\ x_1 + 6 x_2 + 36 x_3 \end{bmatrix} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 3 & 9 \\ 1 & 4 & 16 \\ 1 & 5 & 25 \\ 1 & 6 & 36 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}, $$
+since the measurement was $67$F after 1 minute, $85$F after 3 minutes, etc.</p>
+<p>Just as before, we now have a model matrix, say $A$ and seek the approximation
+$$ b \approx A x, $$
+and can find the best approximation (with respect to the two-norm) via solving the normal equations
+ $$ A^T A x = A^T b. $$
+The only difference from the previous example, where we fit a line, is that we have three parameters to find and must therefore solve a $3 \times 3$ system of equations.</p>
+<p>In particular, we would find the normal equations
+$$ \begin{pmatrix} 5 & 19 & 87 \\ 19 & 87 & 433 \\ 87 & 433 & 2256 \end{pmatrix} \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = \begin{bmatrix} 487 \\ 2012 \\ 9578 \end{bmatrix}, $$
+which have the solution
+$$ \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} \approx \begin{bmatrix} 52.9278 \\ 13.2644 \\ -0.3409 \end{bmatrix}, $$
+which implies a prediction
+$$ q(t) = 52.9278 + 13.2644 t - 0.3409 t^2, $$
+which has a relatively small quadratic term and is therefore close to linear, as can be seen in the following figure.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">67</span><span class="p">,</span><span class="mi">85</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">114</span><span class="p">,</span><span class="mi">118</span><span class="p">];</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">16</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">36</span><span class="p">]]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">52.928</span><span class="p">],[</span><span class="mf">13.2644</span><span class="p">],[</span><span class="o">-</span><span class="mf">0.3409</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="s">&#39;rs&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">&#39;bs--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;Time (minutes)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Temperature (Farenheit)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Quadratic fit of temperature of a kettle over time&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.text.Text at 0x108ddc850&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Homework-3">Homework 3<a class="anchor-link" href="#Homework-3">&#182;</a></h3><p>Due in class on Monday, May 18.</p>
+<h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>Given the system of equations
+   $$ \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 2 \\ 3 & 4 & 5 \end{pmatrix} 
+      \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix} = 
+      \begin{bmatrix} 5 \\ 6 \\ 7 \end{bmatrix}, $$</p>
+<p><strong>a)</strong> Perform Gaussian Elimination to put the system of equations into upper-triangular form.</p>
+<p><strong>b)</strong> Perform back substitution to find $x_3$, $x_2$, and then $x_1$.</p>
+<h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>Given the matrix 
+$$ A = \begin{pmatrix} 1 & 7 & 8 & 3 \\ 2 & 4 & 2 & 1 \end{pmatrix}, $$</p>
+<p><strong>a)</strong> Write down the transpose of $A$ (which is denoted $A^T$).</p>
+<p><strong>b)</strong> Compute $C = A^T A$.</p>
+<h4 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h4><p>Given the measurements $(5,4,5,5,10,7)$, respectively occuring at times $(0,1,2,3,4,5)$:</p>
+<p><strong>a)</strong> Compute the "best" (with respect to the two-norm) <strong>linear</strong> fit of the dataset.</p>
+<p><strong>b)</strong> Compute the "best" (with respect to the two-norm) <strong>quadratic</strong> fit of the dataset.</p>
 
 </div>
 </div>
