@@ -15,7 +15,6 @@ software for modern numerical algorithms, with concentrations on
 on/with structured matrices
 (e.g., $$ \mathcal{H} $$-matrices and [butterfly algorithms](http://github.com/poulson/dist-butterfly)).
 He has recently been focusing on distributed-memory sparse-direct 
-Interior Point Methods and has recently released software for both [direct and
-affine conic form Linear and Quadratic Programs](https://github.com/elemental/Elemental/commit/6bafd25173672a92791832e5397898ad36aff7cd).
+Interior Point Methods and has recently added support for [Linear, Quadratic, and Second-Order Cone Programs] into Elemental.
 
-You may find a recent copy of his CV [here]({{ site.baseurl }}/docs/poulson-cv.pdf).
+You may find a relatively up-to-date copy of his CV [here]({{ site.baseurl }}/docs/poulson-cv.pdf).
